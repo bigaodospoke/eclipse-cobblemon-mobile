@@ -35,3 +35,6 @@ LWJGL/*/build/
 # Eclipse: chave de assinatura nunca vai para o repositório
 ZalithLauncher/eclipse_release.jks
 *.keystore
+
+# APKs baixados para teste
+/builds/
