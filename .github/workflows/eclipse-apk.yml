@@ -1,8 +1,9 @@
 name: Eclipse APK
 
 # Gera o APK do launcher Eclipse Cobblemon.
-# - push na main / execução manual: APK fica em "Artifacts" na página da execução
-# - tag v* (ex.: v1.0.0): também cria um Release com o APK para os jogadores baixarem
+# - push na main / execução manual: APKs ficam em "Artifacts" na página da execução
+# - tag v* (ex.: v1.0.0): também cria um Release com os APKs para os jogadores baixarem
+# arm64 = celulares; x86_64 = emuladores no PC (BlueStacks, LDPlayer, Android Studio)
 
 on:
   push:
@@ -21,6 +22,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 90
+    strategy:
+      matrix:
+        arch: [ arm64, x86_64 ]
+      fail-fast: false
 
     steps:
       - name: Checkout
@@ -47,14 +52,13 @@ jobs:
           fi
           echo "$KEYSTORE_BASE64" | base64 -d > ZalithLauncher/eclipse_release.jks
 
-      # arm64 cobre praticamente todos os celulares capazes de rodar o modpack
-      - name: Build release APK (arm64)
+      - name: Build release APK (${{ matrix.arch }})
         env:
           STORE_PASSWORD: ${{ secrets.STORE_PASSWORD }}
           KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
         run: |
           chmod +x gradlew
-          ./gradlew ZalithLauncher:assembleRelease -Darch=arm64
+          ./gradlew ZalithLauncher:assembleRelease -Darch=${{ matrix.arch }}
 
       - name: Remove signing key
         if: always()
@@ -63,18 +67,32 @@ jobs:
       - name: Upload APK
         uses: actions/upload-artifact@v7
         with:
-          name: eclipse-cobblemon-apk
+          name: eclipse-cobblemon-apk-${{ matrix.arch }}
           path: ZalithLauncher/build/outputs/apk/release/*.apk
           if-no-files-found: error
 
+  release:
+    needs: build
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download APKs
+        uses: actions/download-artifact@v8
+        with:
+          path: apks
+          merge-multiple: true
+
       - name: Publish release
-        if: startsWith(github.ref, 'refs/tags/v')
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" ZalithLauncher/build/outputs/apk/release/*.apk \
+          gh release create "$GITHUB_REF_NAME" apks/*.apk \
             --repo "$GITHUB_REPOSITORY" \
             --title "Eclipse Cobblemon $GITHUB_REF_NAME" \
-            --notes "Launcher Android do servidor Eclipse Cobblemon. Baixe o arquivo .apk abaixo e instale no celular (Android 8 ou superior, 64 bits).
+            --notes "Launcher Android do servidor Eclipse Cobblemon.
+
+          - Celular: baixe o arquivo que termina em arm64-v8a.apk (Android 8 ou superior, 64 bits)
+          - Emulador no PC (BlueStacks, LDPlayer...): baixe o que termina em x86_64.apk
 
           Versão modificada não oficial do Zalith Launcher 2, distribuída sob a GPL-3.0. O código-fonte desta versão está neste repositório."
