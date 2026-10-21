@@ -1,12 +1,13 @@
 #!/usr/bin/env bash
-# Abre o launcher no emulador, passa pelas telas do Eclipse e salva prints em screenshots/
-# (usado pelo workflow "Eclipse Screenshots")
+# Abre o launcher no emulador, passa pelas telas do Eclipse, toca em JOGAR e deixa o jogo abrir.
+# Salva prints e logs em screenshots/ (usado pelo workflow "Eclipse Screenshots").
 set -u
 
 OUT=screenshots
 mkdir -p "$OUT"
 APK=$(ls ZalithLauncher/build/outputs/apk/debug/*.apk | head -n 1)
 PKG=tech.eclipsecobblemon.launcher.debug
+DATA=/sdcard/Android/data/$PKG/files
 UI=/tmp/ui.xml
 
 log() { echo "[screenshots] $*"; }
@@ -33,7 +34,7 @@ has_text() {
   grep -q "$1" "$UI"
 }
 
-# Toca no centro do primeiro elemento cujo texto ou descrição contém $1
+# Toca no centro do elemento com esse texto (primeiro igual; se não houver, o primeiro que contém)
 tap_text() {
   dump_ui
   local xy
@@ -41,17 +42,19 @@ tap_text() {
 import re, sys, xml.etree.ElementTree as ET
 needle, path = sys.argv[1], sys.argv[2]
 try:
-    root = ET.parse(path).getroot()
+    nodes = list(ET.parse(path).getroot().iter("node"))
 except Exception:
     sys.exit(0)
-for node in root.iter("node"):
-    label = (node.get("text") or "") + " " + (node.get("content-desc") or "")
-    if needle in label:
-        nums = re.findall(r"\d+", node.get("bounds", ""))
-        if len(nums) == 4:
-            x1, y1, x2, y2 = map(int, nums)
-            print((x1 + x2) // 2, (y1 + y2) // 2)
-            break
+def labels(node):
+    return [node.get("text") or "", node.get("content-desc") or ""]
+exact = [n for n in nodes if needle in labels(n)]
+partial = [n for n in nodes if any(needle in l for l in labels(n))]
+for node in exact + partial:
+    nums = re.findall(r"\d+", node.get("bounds", ""))
+    if len(nums) == 4:
+        x1, y1, x2, y2 = map(int, nums)
+        print((x1 + x2) // 2, (y1 + y2) // 2)
+        break
 PY
 )
   if [ -n "$xy" ]; then
@@ -63,16 +66,12 @@ PY
   return 1
 }
 
-# Espera um texto aparecer, tirando prints no caminho. $1 texto, $2 segundos, $3 prefixo
-wait_text() {
-  local waited=0
-  while [ "$waited" -lt "$2" ]; do
-    if has_text "$1"; then return 0; fi
-    sleep 15
-    waited=$((waited + 15))
-    adb exec-out screencap -p > "$OUT/$3_$(printf %03d "$waited")s.png"
-  done
-  return 1
+pull_logs() {
+  mkdir -p "$OUT/logs"
+  adb pull "$DATA/logs" "$OUT/logs/launcher" >/dev/null 2>&1 || true
+  adb pull "$DATA/.minecraft/versions/Eclipse Cobblemon/logs" "$OUT/logs/jogo" >/dev/null 2>&1 || true
+  adb pull "$DATA/.minecraft/versions/Eclipse Cobblemon/crash-reports" "$OUT/logs/crash-reports" >/dev/null 2>&1 || true
+  adb logcat -d -t 20000 > "$OUT/logs/logcat.txt" 2>/dev/null || true
 }
 
 log "instalando $APK"
@@ -80,12 +79,27 @@ adb install -r -g "$APK"
 adb shell cmd locale set-app-locales "$PKG" --locales pt-BR || true
 adb shell svc power stayon true || true
 adb shell settings put system screen_off_timeout 1800000 || true
+# Sem o aviso "Viewing full screen" do Android por cima do app
+adb shell settings put secure immersive_mode_confirmations confirmed || true
 
 adb shell monkey -p "$PKG" -c android.intent.category.LAUNCHER 1
 sleep 6
 shot 00_abertura
 
-wait_text "Entre para jogar" 480 01_preparando_app || log "a tela de login não apareceu"
+# Primeira abertura: avisos do sistema e a tela que descompacta o Java (botão Instalar)
+installed=0
+for i in $(seq 1 40); do
+  if has_text "Entre para jogar"; then break; fi
+  tap_text "Got it" >/dev/null || tap_text "Entendi" >/dev/null || true
+  if [ "$installed" -eq 0 ] && { has_text '"Instalar"' || has_text '"Install"'; }; then
+    shot 01_primeira_abertura
+    tap_text "Instalar" || tap_text "Install"
+    installed=1
+  fi
+  sleep 12
+  adb exec-out screencap -p > "$OUT/01_preparando_app_$(printf %02d "$i").png"
+done
+has_text "Entre para jogar" || log "a tela de login não apareceu"
 sleep 8 # status do servidor e notícias
 shot 02_tela_inicial_login
 
@@ -101,38 +115,44 @@ if tap_text "Seu nick"; then
 fi
 shot 04_tela_inicial_logado
 
-if tap_text "JOGAR"; then
-  sleep 6
-  shot 05_jogar
-  if has_text "dados móveis"; then
-    shot 05b_dados_moveis
-    tap_text "Continuar"
-    sleep 5
-  fi
-  # Pedido do sistema para rodar em segundo plano, se aparecer
-  tap_text "Permitir" >/dev/null || tap_text "Allow" >/dev/null || true
-  sleep 40
-  shot 06_baixando
-  tap_text "Cancelar" || tap_text "Cancel" || adb shell input keyevent 4
-  sleep 4
-fi
-
 if tap_text "Trocar conta"; then
   sleep 4
-  shot 07_contas
+  shot 05_contas
   adb shell input keyevent 4
   sleep 3
 fi
 
 if tap_text "Configurações" || tap_text "Settings"; then
   sleep 4
-  shot 08_configuracoes
+  shot 06_configuracoes
   if tap_text "Sobre" || tap_text "About"; then
     sleep 4
-    shot 09_sobre
+    shot 07_sobre
   fi
+  adb shell input keyevent 4
+  sleep 2
+  adb shell input keyevent 4
+  sleep 3
 fi
 
-adb logcat -d -t 8000 > "$OUT/logcat.txt" 2>/dev/null || true
+has_text "Entre direto em\|JOGAR" || adb shell monkey -p "$PKG" -c android.intent.category.LAUNCHER 1
+sleep 3
+if tap_text "JOGAR"; then
+  sleep 6
+  shot 08_preparando_jogo
+  if has_text "dados móveis"; then
+    shot 08b_dados_moveis
+    tap_text "Continuar"
+  fi
+  # Instala Minecraft + Fabric, baixa o modpack e abre o jogo: prints a cada 30 s
+  for i in $(seq 1 40); do
+    sleep 30
+    tap_text "Permitir" >/dev/null 2>&1 || true
+    adb exec-out screencap -p > "$OUT/09_jogo_$(printf %02d "$i").png"
+    if adb shell pidof "$PKG:game" >/dev/null 2>&1; then log "processo do jogo rodando ($i)"; fi
+  done
+fi
+
+pull_logs
 log "fim"
 exit 0

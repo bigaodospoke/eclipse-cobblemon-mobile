@@ -9,7 +9,7 @@ on:
 jobs:
   screenshots:
     runs-on: ubuntu-latest
-    timeout-minutes: 75
+    timeout-minutes: 100
 
     steps:
       - name: Checkout
@@ -45,10 +45,10 @@ jobs:
           arch: x86_64
           target: google_apis
           profile: pixel_6
-          ram-size: 4096M
-          disk-size: 8G
+          ram-size: 6144M
+          disk-size: 12G
           disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -change-locale pt-BR
           script: bash .github/scripts/eclipse-screenshots.sh
 
       - name: Upload screenshots
