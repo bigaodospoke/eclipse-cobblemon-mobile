@@ -74,8 +74,28 @@ pull_logs() {
   adb logcat -d -t 20000 > "$OUT/logs/logcat.txt" 2>/dev/null || true
 }
 
+# A troca de idioma (-change-locale) reinicia parte do Android logo depois do boot:
+# espera o sistema estabilizar e tenta instalar de novo se falhar
+wait_system() {
+  adb wait-for-device
+  for _ in $(seq 1 60); do
+    if [ "$(adb shell getprop sys.boot_completed | tr -d '\r')" = "1" ] && adb shell pm path android >/dev/null 2>&1; then
+      return 0
+    fi
+    sleep 5
+  done
+}
+sleep 30
+wait_system
+
 log "instalando $APK"
-adb install -r -g "$APK"
+for attempt in 1 2 3 4 5 6; do
+  if adb install -r -g "$APK"; then break; fi
+  log "instalação falhou (tentativa $attempt), esperando o sistema"
+  sleep 20
+  wait_system
+done
+adb shell pm path "$PKG" >/dev/null 2>&1 || { log "o app não foi instalado"; pull_logs; exit 0; }
 adb shell cmd locale set-app-locales "$PKG" --locales pt-BR || true
 adb shell svc power stayon true || true
 adb shell settings put system screen_off_timeout 1800000 || true
