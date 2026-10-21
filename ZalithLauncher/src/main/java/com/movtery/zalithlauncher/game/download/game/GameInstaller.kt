@@ -353,7 +353,7 @@ class GameInstaller(
     /**
      * 获取修改版本的任务流阶段
      */
-    private suspend fun getModifyTaskPhase(): List<TaskFlowExecutor.TaskPhase> = withContext(Dispatchers.IO) {
+    suspend fun getModifyTaskPhase(): List<TaskFlowExecutor.TaskPhase> = withContext(Dispatchers.IO) {
         val pathConfig = createPathConfig(checkVersionExists = false)
         val tempOutputDir = File(PathManager.DIR_CACHE_GAME_DOWNLOADER, "modified/${info.customVersionName}")
 

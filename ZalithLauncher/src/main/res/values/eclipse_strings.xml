@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Textos da versão Eclipse Cobblemon. Português como padrão: o público do servidor é brasileiro. -->
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+    <string name="eclipse_task_check">Verificando atualizações do servidor</string>
+    <string name="eclipse_task_sync">Atualizando mods e configurações</string>
+    <string name="eclipse_task_sync_progress">%1$d de %2$d arquivos · %3$s de %4$s</string>
+    <string name="eclipse_task_finish">Preparando para entrar no servidor</string>
+    <string name="eclipse_preparing_title">Preparando o Eclipse Cobblemon</string>
+    <string name="eclipse_prepare_failed">Não foi possível preparar o jogo</string>
+
+    <string name="eclipse_microsoft_waiting">Aguardando o login na página da Microsoft…</string>
+
+    <string name="eclipse_play">JOGAR</string>
+    <string name="eclipse_play_hint">Entra direto em %1$s</string>
+
+    <string name="eclipse_login_title">Entre para jogar</string>
+    <string name="eclipse_login_microsoft">Entrar com Microsoft</string>
+    <string name="eclipse_login_or">ou</string>
+    <string name="eclipse_login_nick_hint">Seu nick</string>
+    <string name="eclipse_login_nick_rule">3 a 16 letras, números ou _</string>
+    <string name="eclipse_login_nick_continue">Jogar com nick</string>
+
+    <string name="eclipse_account_switch">Trocar conta</string>
+    <string name="eclipse_account_microsoft">Conta Microsoft</string>
+    <string name="eclipse_account_offline">Conta offline (nick)</string>
+
+    <string name="eclipse_status_checking">Verificando servidor…</string>
+    <string name="eclipse_status_online">Online · %1$d/%2$d jogadores</string>
+    <string name="eclipse_status_offline">Servidor offline</string>
+
+    <string name="eclipse_news_title">Novidades</string>
+    <string name="eclipse_news_empty">Nenhuma novidade por enquanto.</string>
+
+    <string name="eclipse_link_discord">Discord</string>
+    <string name="eclipse_link_store">Loja</string>
+    <string name="eclipse_link_website">Site</string>
+
+    <string name="eclipse_mobile_data_title">Você está usando dados móveis</string>
+    <string name="eclipse_mobile_data_text_known">Serão baixados cerca de %1$s. Quer continuar mesmo assim?</string>
+    <string name="eclipse_mobile_data_text_unknown">A primeira instalação baixa o Minecraft e os mods do servidor (cerca de 1 GB). Quer continuar mesmo assim?</string>
+    <string name="eclipse_mobile_data_continue">Continuar</string>
+
+    <string name="eclipse_unofficial_notice">Versão modificada não oficial do Zalith Launcher 2 · GPL-3.0 · toque para ver o código-fonte</string>
+
+    <string name="eclipse_about_text">Versão %1$s · versão modificada não oficial do Zalith Launcher 2, feita para o servidor Eclipse Cobblemon. Código-fonte aberto sob a GPL-3.0.</string>
+    <string name="eclipse_about_source">Código-fonte</string>
+    <string name="eclipse_about_upstream_text">Projeto original em que este launcher se baseia, por MovTery e colaboradores. Não tem ligação com o servidor Eclipse Cobblemon.</string>
+</resources>

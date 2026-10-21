@@ -93,7 +93,7 @@
     <string name="crash_singnal_message">A inicialização da Java Virtual Machine foi abortada devido ao sinal fatal %d.</string>
     <string name="crash_exit_note">Para detalhes sobre a causa, verifique o arquivo de log. Se você não conseguir resolver o problema sozinho, envie o arquivo de log para alguém que possa analisá-lo. Essa pessoa poderá ajudá-lo a diagnosticar e corrigir o problema. Não tire uma captura de tela da tela atual, pois as capturas de tela podem não fornecer informações suficientes para resolver o problema.</string>
     <string name="crash_type">Tipo da falha: %s</string>
-    <string name="crash_type_launcher">Oh não! O launcher crashou. Contate os desenvolvedores do ZalithLauncher2 ou verifique as logs para conseguir consertar esse problema</string>
+    <string name="crash_type_launcher">Oh não! O launcher crashou. Avise a equipe do Eclipse Cobblemon no Discord ou verifique os logs para tentar resolver o problema</string>
     <string name="crash_type_game">Oh não! O jogo crashou. Provavelmente algum erro nos argumentos da Java Virtual Machine, falta de dependências obrigatórias de algum mod (se usando Forge, Fabric, Quilt ou NeoForge) ou algum outro problema, verifique as logs do jogo para saber mais</string>
     <string name="crash_share_logs">Compartilhe os registros</string>
     <string name="crash_restart">Reiniciar</string>
@@ -447,11 +447,11 @@
     <string name="account_supporting_microsoft_tip_link_purchase">1° - Compre o Minecraft Java</string>
     <string name="account_supporting_microsoft_tip_link_make_gameid">2° - Vá no seu perfil do minecraft.net, coloque um Nickname e volte para o launcher</string>
     <string name="account_supporting_microsoft_tip_hint_t1">Siga os passos abaixo para adicionar sua conta:</string>
-    <string name="account_supporting_microsoft_tip_hint_t2">1. Clique no botão Login - o launcher tentará recuperar um código de verificação;\n</string>
-    <string name="account_supporting_microsoft_tip_hint_t3">2. Digite o código fornecido por %s na página pop-up e clique em Permitir acesso;\n</string>
-    <string name="account_supporting_microsoft_tip_hint_t4">3. Siga as instruções na página da web para concluir o processo de login;\n</string>
-    <string name="account_supporting_microsoft_tip_hint_t5">4. Quando solicitado com \"Permitir que este aplicativo acesse suas informações?\", clique em Aceitar;\n</string>
-    <string name="account_supporting_microsoft_tip_hint_t6">5. Quando a página exibir \"Concluído!\", a conta será adicionada automaticamente. Aguarde um momento.</string>
+    <string name="account_supporting_microsoft_tip_hint_t2">1. Toque em Login — a página de login da Microsoft vai abrir dentro do launcher;\n</string>
+    <string name="account_supporting_microsoft_tip_hint_t3">2. Entre com a conta Microsoft que tem o Minecraft Java (a página abre no %s);\n</string>
+    <string name="account_supporting_microsoft_tip_hint_t4">3. Siga as instruções da página até concluir o login;\n</string>
+    <string name="account_supporting_microsoft_tip_hint_t5">4. Se aparecer \"Permitir que este aplicativo acesse suas informações?\", toque em Aceitar;\n</string>
+    <string name="account_supporting_microsoft_tip_hint_t6">5. Pronto: a página fecha sozinha e a conta é adicionada. Aguarde um instante.</string>
     <string name="account_supporting_microsoft_tip_hint_t7">Se a página da web exibir uma mensagem de erro ou a conta não puder ser adicionada, tente novamente as etapas acima.\n</string>
     <string name="account_supporting_microsoft_tip_hint_t8">Dica: Se sua conexão for ruim, a página pode demorar para carregar ou não abrir. Tente usar um proxy de rede e tente novamente.</string>
     <string name="account_delete_title">Excluir conta</string>

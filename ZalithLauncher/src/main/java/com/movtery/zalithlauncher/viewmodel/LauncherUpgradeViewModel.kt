@@ -38,6 +38,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.movtery.zalithlauncher.eclipse.EclipseConfig
 import com.movtery.zalithlauncher.BuildConfig
 import com.movtery.zalithlauncher.R
 import com.movtery.zalithlauncher.path.GLOBAL_CLIENT
@@ -123,6 +124,8 @@ class LauncherUpgradeViewModel: ViewModel() {
     fun checkOnAppStart(
         onIsLatest: suspend () -> Unit = {}
     ) {
+        //Eclipse: as atualizações do Zalith original não se aplicam a esta versão modificada
+        if (!EclipseConfig.CHECK_UPSTREAM_UPDATES) return
         viewModelScope.launch {
             if (
                 isWithinRateLimit(
@@ -159,6 +162,10 @@ class LauncherUpgradeViewModel: ViewModel() {
         onInProgress: suspend () -> Unit = {},
         onIsLatest: suspend () -> Unit = {}
     ): Boolean {
+        if (!EclipseConfig.CHECK_UPSTREAM_UPDATES) {
+            onIsLatest()
+            return true
+        }
         return checkMutex.withLock {
             if (
                 isWithinRateLimit(

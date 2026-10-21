@@ -21,6 +21,7 @@ package com.movtery.zalithlauncher.ui.screens.content
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
 import android.webkit.CookieManager
+import android.webkit.WebResourceRequest
 import android.webkit.WebSettings
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -47,6 +48,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.navigation3.runtime.NavBackStack
+import com.movtery.zalithlauncher.game.account.microsoft.AuthCodeFlow
 import com.movtery.zalithlauncher.ui.base.BaseScreen
 import com.movtery.zalithlauncher.ui.components.MarqueeText
 import com.movtery.zalithlauncher.ui.screens.NormalNavKey
@@ -132,6 +134,11 @@ fun WebViewScreen(
                     factory = {
                         WebView(context).apply {
                             webViewClient = object : WebViewClient() {
+                                //Eclipse: o login Microsoft volta para http://localhost, que é entregue ao launcher em vez de carregado
+                                override fun shouldOverrideUrlLoading(view: WebView?, request: WebResourceRequest?): Boolean {
+                                    return AuthCodeFlow.handleRedirect(request?.url?.toString())
+                                }
+
                                 override fun onPageFinished(view: WebView?, url: String?) {
                                     super.onPageFinished(view, url)
                                     webUrl = url ?: ""
@@ -139,6 +146,10 @@ fun WebViewScreen(
                                 }
 
                                 override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
+                                    if (AuthCodeFlow.handleRedirect(url)) {
+                                        view?.stopLoading()
+                                        return
+                                    }
                                     super.onPageStarted(view, url, favicon)
                                     webUrl = url ?: ""
                                     isWebLoading = true
@@ -146,6 +157,7 @@ fun WebViewScreen(
                             }
 
                             settings.javaScriptEnabled = true
+                            settings.domStorageEnabled = true
                             settings.cacheMode = WebSettings.LOAD_NO_CACHE
                             loadUrl(key.url)
                             webViewHolder.value = this

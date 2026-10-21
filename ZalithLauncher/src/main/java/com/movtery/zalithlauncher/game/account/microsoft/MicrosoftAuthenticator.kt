@@ -19,6 +19,7 @@
 package com.movtery.zalithlauncher.game.account.microsoft
 
 import com.movtery.zalithlauncher.BuildKeys
+import com.movtery.zalithlauncher.eclipse.EclipseConfig
 import com.movtery.zalithlauncher.game.account.Account
 import com.movtery.zalithlauncher.game.account.AccountType
 import com.movtery.zalithlauncher.game.account.AccountsManager
@@ -201,6 +202,32 @@ suspend fun getTokenResponse(
 }
 
 /**
+ * Eclipse: troca o código de autorização do [AuthCodeFlow] por access/refresh token
+ */
+suspend fun exchangeAuthorizationCode(
+    code: String,
+    codeVerifier: String,
+    context: CoroutineContext
+): TokenResponse {
+    val response: JsonObject = submitForm(
+        url = "$MICROSOFT_AUTH_URL$TENANT/oauth2/v2.0/token",
+        parameters = Parameters.build {
+            append("client_id", BuildKeys.OAUTH_CLIENT_ID)
+            append("code", code)
+            append("redirect_uri", EclipseConfig.MICROSOFT_REDIRECT_URI)
+            append("grant_type", "authorization_code")
+            append("code_verifier", codeVerifier)
+        },
+        context = context
+    )
+    return TokenResponse(
+        accessToken = response["access_token"].text(),
+        refreshToken = response["refresh_token"].text(),
+        expiresIn = response["expires_in"]?.jsonPrimitive?.int ?: 0
+    )
+}
+
+/**
  * 从 OAuth 错误响应中解析 error 字段
  */
 private suspend fun ClientRequestException.errorCode(): String? {
@@ -268,12 +295,15 @@ private suspend fun refreshAccessToken(
 
     return withRetry {
         try {
+            //Eclipse: as contas vêm do fluxo authorization code (AuthCodeFlow), renovadas no endpoint v2 como no launcher de PC
             val response = submitForm<JsonObject>(
-                url = "$LIVE_AUTH_URL/oauth20_token.srf",
+                url = "$MICROSOFT_AUTH_URL$TENANT/oauth2/v2.0/token",
                 parameters = Parameters.build {
                     append("client_id", BuildKeys.OAUTH_CLIENT_ID)
                     append("refresh_token", refreshToken)
                     append("grant_type", "refresh_token")
+                    append("redirect_uri", EclipseConfig.MICROSOFT_REDIRECT_URI)
+                    append("scope", AUTH_CODE_SCOPES)
                 },
                 context = context
             )

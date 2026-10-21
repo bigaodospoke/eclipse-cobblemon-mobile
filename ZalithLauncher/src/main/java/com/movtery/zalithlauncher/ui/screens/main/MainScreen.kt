@@ -74,6 +74,8 @@ import androidx.navigation3.runtime.entryProvider
 import androidx.navigation3.ui.NavDisplay
 import com.movtery.zalithlauncher.BuildKeys
 import com.movtery.zalithlauncher.R
+import com.movtery.zalithlauncher.eclipse.EclipseConfig
+import com.movtery.zalithlauncher.eclipse.EclipseHomeScreen
 import com.movtery.zalithlauncher.coroutine.Task
 import com.movtery.zalithlauncher.coroutine.TaskSystem
 import com.movtery.zalithlauncher.game.version.installed.Version
@@ -416,23 +418,25 @@ private fun <E: TitledNavKey> TopBar(
                     )
                 }
 
-                TopBarRailItem(
-                    selected = inMultiplayerScreen,
-                    painter = painterResource(R.drawable.ic_group_filled),
-                    text = stringResource(R.string.terracotta),
-                    onClick = {
-                        if (!inMultiplayerScreen) toMultiplayerScreen()
-                    },
-                )
+                if (EclipseConfig.SHOW_ADVANCED_TOP_BAR) {
+                    TopBarRailItem(
+                        selected = inMultiplayerScreen,
+                        painter = painterResource(R.drawable.ic_group_filled),
+                        text = stringResource(R.string.terracotta),
+                        onClick = {
+                            if (!inMultiplayerScreen) toMultiplayerScreen()
+                        },
+                    )
 
-                TopBarRailItem(
-                    selected = inDownloadScreen,
-                    painter = painterResource(R.drawable.ic_download_2_filled),
-                    text = stringResource(R.string.generic_download),
-                    onClick = {
-                        if (!inDownloadScreen) toDownloadScreen()
-                    },
-                )
+                    TopBarRailItem(
+                        selected = inDownloadScreen,
+                        painter = painterResource(R.drawable.ic_download_2_filled),
+                        text = stringResource(R.string.generic_download),
+                        onClick = {
+                            if (!inDownloadScreen) toDownloadScreen()
+                        },
+                    )
+                }
 
                 TopBarRailItem(
                     selected = inSettingsScreen,
@@ -526,7 +530,14 @@ private fun NavigationUI(
             popTransitionSpec = rememberTransitionSpec(),
             entryProvider = entryProvider {
                 entry<NormalNavKey.LauncherMain> {
-                    LauncherScreen(
+                    //Eclipse: tela inicial própria (login + jogar no servidor)
+                    if (EclipseConfig.CUSTOM_HOME) {
+                        EclipseHomeScreen(
+                            backStackViewModel = screenBackStackModel,
+                            eventViewModel = eventViewModel,
+                            submitError = submitError
+                        )
+                    } else LauncherScreen(
                         backStackViewModel = screenBackStackModel,
                         navigateToVersions = navigateToVersions,
                         onLaunchGame = { version ->

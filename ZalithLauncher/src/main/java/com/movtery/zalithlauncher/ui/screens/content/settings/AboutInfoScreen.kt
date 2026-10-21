@@ -57,6 +57,7 @@ import coil3.request.ImageRequest
 import com.movtery.zalithlauncher.BuildConfig
 import com.movtery.zalithlauncher.BuildKeys
 import com.movtery.zalithlauncher.R
+import com.movtery.zalithlauncher.eclipse.EclipseConfig
 import com.movtery.zalithlauncher.game.plugin.ApkPlugin
 import com.movtery.zalithlauncher.game.plugin.PluginLoader
 import com.movtery.zalithlauncher.game.plugin.appCacheIcon
@@ -77,6 +78,9 @@ import com.movtery.zalithlauncher.ui.screens.content.settings.layouts.CardPositi
 import com.movtery.zalithlauncher.ui.screens.content.settings.layouts.SettingsCard
 import com.movtery.zalithlauncher.ui.theme.itemColor
 import com.movtery.zalithlauncher.ui.theme.onItemColor
+
+/** Nome do projeto original, para créditos (esta versão não usa o nome) */
+private const val ZALITH_NAME = "Zalith Launcher 2"
 
 @Composable
 fun AboutInfoScreen(
@@ -102,16 +106,25 @@ fun AboutInfoScreen(
                     title = stringResource(R.string.about_launcher_title)
                 ) {
                     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                        //Eclipse: identifica esta versão como modificada e não oficial (GPL-3.0, seção 7 do Zalith Launcher 2)
                         ButtonIconItem(
-                            icon = painterResource(R.drawable.img_launcher),
+                            icon = painterResource(R.drawable.eclipse_logo),
                             title = BuildKeys.LAUNCHER_NAME,
-                            text = stringResource(R.string.about_launcher_version, BuildConfig.VERSION_NAME),
+                            text = stringResource(R.string.eclipse_about_text, BuildConfig.VERSION_NAME),
                             button = {
                                 Button(
-                                    onClick = checkUpdate
+                                    onClick = { openLink(EclipseConfig.SOURCE_URL) }
                                 ) {
-                                    Text(text = stringResource(R.string.upgrade_title))
+                                    Text(text = stringResource(R.string.eclipse_about_source))
                                 }
+                            }
+                        )
+
+                        ButtonIconItem(
+                            icon = painterResource(R.drawable.img_launcher),
+                            title = ZALITH_NAME,
+                            text = stringResource(R.string.eclipse_about_upstream_text),
+                            button = {
                                 Button(
                                     onClick = { openLink(URL_PROJECT) }
                                 ) {
@@ -123,7 +136,7 @@ fun AboutInfoScreen(
                         ButtonIconItem(
                             icon = painterResource(R.drawable.img_avatar_movtery),
                             title = stringResource(R.string.about_launcher_author_movtery_title),
-                            text = stringResource(R.string.about_launcher_author_movtery_text, BuildKeys.LAUNCHER_NAME),
+                            text = stringResource(R.string.about_launcher_author_movtery_text, ZALITH_NAME),
                             button = {
                                 Button(
                                     onClick = { openLink(URL_SUPPORT) }

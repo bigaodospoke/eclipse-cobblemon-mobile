@@ -23,7 +23,6 @@ import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import com.movtery.zalithlauncher.R
-import com.movtery.zalithlauncher.context.COPY_LABEL_DEVICE_CODE
 import com.movtery.zalithlauncher.coroutine.Task
 import com.movtery.zalithlauncher.coroutine.TaskSystem
 import com.movtery.zalithlauncher.game.account.auth_server.AuthServerHelper
@@ -31,12 +30,12 @@ import com.movtery.zalithlauncher.game.account.auth_server.ResponseException
 import com.movtery.zalithlauncher.game.account.auth_server.data.AuthServer
 import com.movtery.zalithlauncher.game.account.auth_server.getAuthServeInfo
 import com.movtery.zalithlauncher.game.account.microsoft.AsyncStatus
+import com.movtery.zalithlauncher.game.account.microsoft.AuthCodeFlow
 import com.movtery.zalithlauncher.game.account.microsoft.AuthType
 import com.movtery.zalithlauncher.game.account.microsoft.MinecraftProfileException
 import com.movtery.zalithlauncher.game.account.microsoft.NotPurchasedMinecraftException
 import com.movtery.zalithlauncher.game.account.microsoft.XboxLoginException
-import com.movtery.zalithlauncher.game.account.microsoft.fetchDeviceCodeResponse
-import com.movtery.zalithlauncher.game.account.microsoft.getTokenResponse
+import com.movtery.zalithlauncher.game.account.microsoft.exchangeAuthorizationCode
 import com.movtery.zalithlauncher.game.account.microsoft.microsoftAuthAsync
 import com.movtery.zalithlauncher.game.account.microsoft.toLocal
 import com.movtery.zalithlauncher.path.DOWNLOAD_OKHTTP_CLIENT
@@ -44,7 +43,6 @@ import com.movtery.zalithlauncher.path.URL_USER_AGENT
 import com.movtery.zalithlauncher.ui.AndroidStringText
 import com.movtery.zalithlauncher.ui.androidText
 import com.movtery.zalithlauncher.ui.screens.content.elements.MicrosoftLoginOperation
-import com.movtery.zalithlauncher.utils.copyText
 import com.movtery.zalithlauncher.utils.logging.Logger
 import com.movtery.zalithlauncher.utils.network.toLocal
 import com.movtery.zalithlauncher.viewmodel.ErrorViewModel
@@ -52,7 +50,11 @@ import io.ktor.client.plugins.HttpRequestTimeoutException
 import io.ktor.client.plugins.ResponseException as KtorResponseException
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 import okhttp3.Request
 import okhttp3.Response
 import org.json.JSONObject
@@ -117,31 +119,36 @@ fun microsoftLogin(
         task = { task ->
             Logger.info(TAG, "Starting Microsoft account login")
             task.updateProgress(-1f)
-            task.updateMessage(androidText(R.string.account_microsoft_fetch_device_code))
-            val deviceCode = fetchDeviceCodeResponse(coroutineContext)
-            Logger.debug(TAG, "Device code received, verification url: ${deviceCode.verificationUrl}, expires in ${deviceCode.expiresIn}s")
-            copyText(COPY_LABEL_DEVICE_CODE, deviceCode.userCode, context, false)
-            showToast(
-                androidText(R.string.account_microsoft_coped_device_code, deviceCode.userCode),
-                Toast.LENGTH_SHORT
-            )
-            toWeb(deviceCode.verificationUrl)
-            task.updateProgress(-1f)
-            task.updateMessage(androidText(R.string.account_microsoft_get_token, deviceCode.userCode))
-            val tokenResponse = getTokenResponse(deviceCode, coroutineContext) { time ->
-                (!checkIfInWebScreen()).also { exit ->
-                    if (exit && time > 0) {
-                        //如果已退出网页，则视为用户想要退出登录
-                        //弹出提示
-                        Logger.debug(TAG, "User left the web page during device code polling")
-                        showToast(
-                            androidText(R.string.account_microsoft_exit_by_user),
-                            Toast.LENGTH_LONG
-                        )
+            task.updateMessage(androidText(R.string.eclipse_microsoft_waiting))
+            //Eclipse: authorization code + PKCE na WebView do launcher (o app da Azure não aceita device code)
+            val session = AuthCodeFlow.newSession()
+            toWeb(session.authorizeUrl)
+            val code = coroutineScope {
+                //Se o jogador sair da página de login, cancela a espera
+                val watcher = launch {
+                    delay(1500L)
+                    while (isActive) {
+                        if (!checkIfInWebScreen()) {
+                            Logger.debug(TAG, "User left the web page during Microsoft sign-in")
+                            showToast(
+                                androidText(R.string.account_microsoft_exit_by_user),
+                                Toast.LENGTH_LONG
+                            )
+                            AuthCodeFlow.cancel(session)
+                            break
+                        }
+                        delay(500L)
                     }
+                }
+                try {
+                    session.awaitCode()
+                } finally {
+                    watcher.cancel()
                 }
             }
             backToMain()
+            task.updateMessage(androidText(R.string.account_microsoft_getting_access_token))
+            val tokenResponse = exchangeAuthorizationCode(code, session.codeVerifier, coroutineContext)
             val account = microsoftAuth(
                 AuthType.Access,
                 tokenResponse.refreshToken,

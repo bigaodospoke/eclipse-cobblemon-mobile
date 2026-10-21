@@ -14,6 +14,8 @@ plugins {
 }
 
 val zalithPackageName = "com.movtery.zalithlauncher"
+//Eclipse: id próprio, para instalar junto com o Zalith original sem conflito
+val eclipseApplicationId = "tech.eclipsecobblemon.launcher"
 val launcherAPPName = project.findProperty("launcher_app_name") as? String ?: error("The \"launcher_app_name\" property is not set in gradle.properties.")
 val launcherName = project.findProperty("launcher_name") as? String ?: error("The \"launcher_name\" property is not set in gradle.properties.")
 val launcherShortName = project.findProperty("launcher_short_name") as? String ?: error("The \"launcher_short_name\" property is not set in gradle.properties.")
@@ -50,9 +52,10 @@ android {
 
     signingConfigs {
         create("releaseBuild") {
-            storeFile = file("zalith_launcher.jks")
+            //Eclipse: chave própria; no GitHub Actions vem do secret KEYSTORE_BASE64 (nunca vai para o repositório)
+            storeFile = file("eclipse_release.jks")
             storePassword = getKeyFromLocal("STORE_PASSWORD", ".store_password.txt")
-            keyAlias = "movtery_zalith"
+            keyAlias = "eclipse"
             keyPassword = getKeyFromLocal("KEY_PASSWORD", ".key_password.txt")
         }
         create("debugBuild") {
@@ -64,8 +67,7 @@ android {
     }
 
     defaultConfig {
-        applicationId = zalithPackageName
-        applicationIdSuffix = ".v2"
+        applicationId = eclipseApplicationId
         minSdk = 26
         targetSdk = 34
         versionCode = launcherVersionCode
