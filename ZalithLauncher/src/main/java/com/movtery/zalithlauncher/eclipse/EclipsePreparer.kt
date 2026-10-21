@@ -52,9 +52,15 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.serialization.Serializable
 import java.io.File
+import java.util.zip.ZipEntry
+import java.util.zip.ZipFile
+import java.util.zip.ZipOutputStream
 import kotlin.math.min
 
 private const val TAG = "EclipsePreparer"
+
+/** Prefixo dos mods vazios que desativam mods incompatíveis com o Android */
+private const val DISABLED_STUB_PREFIX = "zz-eclipse-celular-desativa-"
 
 /** Acima disso, em dados móveis, o jogador confirma antes de baixar */
 private const val MOBILE_DATA_CONFIRM_BYTES = 20L * 1024 * 1024
@@ -248,6 +254,8 @@ class EclipsePreparer(
                     files = managed.associate { it.path to it.sha1 }
                 )
             )
+
+            writeDisabledModStubs(dir)
         }
 
         addTask(
@@ -271,6 +279,36 @@ class EclipsePreparer(
                 ?.takeIf { it.isValid() }
             //Atualiza a lista de versões do resto do app em segundo plano
             VersionsManager.refresh(TAG, trySetVersion = EclipseConfig.VERSION_NAME)
+        }
+    }
+
+    /**
+     * Cria um mod vazio para cada id de [EclipseConfig.MOBILE_DISABLED_MODS] e apaga os que saíram da lista.
+     * Com versão maior e estando direto em mods/, ele vence o mod original no Fabric.
+     */
+    private fun writeDisabledModStubs(dir: File) {
+        val modsDir = File(dir, "mods").apply { mkdirs() }
+        val wanted = EclipseConfig.MOBILE_DISABLED_MODS.associateBy { "$DISABLED_STUB_PREFIX$it.jar" }
+
+        modsDir.listFiles()
+            ?.filter { it.name.startsWith(DISABLED_STUB_PREFIX) && it.name !in wanted }
+            ?.forEach { it.delete() }
+
+        wanted.forEach { (fileName, modId) ->
+            val json = """{"schemaVersion":1,"id":"$modId","version":"999.0.0+eclipse-mobile",""" +
+                    """"name":"$modId (desativado no celular)","description":"Este mod não funciona no Android.","environment":"*"}"""
+            val stub = File(modsDir, fileName)
+            val current = runCatching {
+                ZipFile(stub).use { zip -> zip.getInputStream(zip.getEntry("fabric.mod.json")).reader().readText() }
+            }.getOrNull()
+            if (current == json) return@forEach
+
+            ZipOutputStream(stub.outputStream()).use { zip ->
+                zip.putNextEntry(ZipEntry("fabric.mod.json"))
+                zip.write(json.toByteArray(Charsets.UTF_8))
+                zip.closeEntry()
+            }
+            Logger.info(TAG, "Disabled mod on mobile: $modId")
         }
     }
 

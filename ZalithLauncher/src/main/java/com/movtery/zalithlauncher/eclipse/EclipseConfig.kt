@@ -52,7 +52,15 @@ object EclipseConfig {
      * Login Microsoft: o mesmo app da Azure do launcher de PC.
      * O fluxo é "authorization code + PKCE" com retorno em localhost, que a WebView intercepta.
      */
-    const val MICROSOFT_REDIRECT_URI = "http://localhost:59016"
+    const val MICROSOFT_REDIRECT_URI = "http://localhost:59016/auth/callback"
+
+    /**
+     * Mods do pack que não funcionam no Android e são desativados só no celular.
+     * Para cada id, o launcher cria em mods/ um mod vazio com o mesmo id e versão maior;
+     * o Fabric escolhe esse no lugar do original (mesmo quando o original vem dentro de outro jar).
+     * - axiom: traz a biblioteca nativa do ImGui só para PC (x86-64) e fecha o jogo ao iniciar
+     */
+    val MOBILE_DISABLED_MODS = listOf("axiom")
 
     /** Regra de nick do modo offline, igual ao launcher de PC */
     val NICK_REGEX = Regex("^[A-Za-z0-9_]{3,16}$")
