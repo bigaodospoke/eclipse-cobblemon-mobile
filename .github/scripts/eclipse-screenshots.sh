@@ -130,7 +130,7 @@ if tap_text "Seu nick"; then
   adb shell input keyevent 4 # fecha o teclado
   sleep 2
   shot 03_nick_digitado
-  tap_text "Jogar com nick"
+  tap_text "Entrar" || tap_text "Jogar com nick"
   sleep 5
 fi
 shot 04_tela_inicial_logado

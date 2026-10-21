@@ -18,7 +18,7 @@
     <string name="eclipse_login_or">ou</string>
     <string name="eclipse_login_nick_hint">Seu nick</string>
     <string name="eclipse_login_nick_rule">3 a 16 letras, números ou _</string>
-    <string name="eclipse_login_nick_continue">Jogar com nick</string>
+    <string name="eclipse_login_nick_continue">Entrar</string>
 
     <string name="eclipse_account_switch">Trocar conta</string>
     <string name="eclipse_account_microsoft">Conta Microsoft</string>

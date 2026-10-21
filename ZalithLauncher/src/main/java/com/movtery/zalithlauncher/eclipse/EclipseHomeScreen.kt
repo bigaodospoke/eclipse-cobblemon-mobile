@@ -522,25 +522,34 @@ private fun LoginContent(
         HorizontalDivider(modifier = Modifier.weight(1f), color = TextOnImageDim.copy(alpha = 0.3f))
     }
 
-    OutlinedTextField(
-        modifier = Modifier.fillMaxWidth(),
-        value = nick,
-        onValueChange = { nick = it.trim().take(16) },
-        singleLine = true,
-        label = { Text(stringResource(R.string.eclipse_login_nick_hint)) },
-        supportingText = { Text(stringResource(R.string.eclipse_login_nick_rule)) },
-        isError = nick.isNotEmpty() && !nickValid,
-        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
-        keyboardActions = KeyboardActions(onDone = { submitNick() })
-    )
-
-    OutlinedButton(
-        modifier = Modifier.fillMaxWidth(),
-        enabled = nickValid,
-        colors = ButtonDefaults.outlinedButtonColors(contentColor = TextOnImage),
-        onClick = { submitNick() }
+    //Campo e botão lado a lado: em celular deitado não sobra altura para um embaixo do outro
+    Row(
+        verticalAlignment = Alignment.Top,
+        horizontalArrangement = Arrangement.spacedBy(8.dp)
     ) {
-        Text(text = stringResource(R.string.eclipse_login_nick_continue))
+        OutlinedTextField(
+            modifier = Modifier.weight(1f),
+            value = nick,
+            onValueChange = { nick = it.trim().take(16) },
+            singleLine = true,
+            label = { Text(stringResource(R.string.eclipse_login_nick_hint)) },
+            supportingText = { Text(stringResource(R.string.eclipse_login_nick_rule)) },
+            isError = nick.isNotEmpty() && !nickValid,
+            keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+            keyboardActions = KeyboardActions(onDone = { submitNick() })
+        )
+
+        //Alinhado com a caixa do campo (o rótulo do campo ocupa 8dp acima dela)
+        OutlinedButton(
+            modifier = Modifier
+                .padding(top = 8.dp)
+                .height(56.dp),
+            enabled = nickValid,
+            colors = ButtonDefaults.outlinedButtonColors(contentColor = TextOnImage),
+            onClick = { submitNick() }
+        ) {
+            Text(text = stringResource(R.string.eclipse_login_nick_continue))
+        }
     }
 }
 
