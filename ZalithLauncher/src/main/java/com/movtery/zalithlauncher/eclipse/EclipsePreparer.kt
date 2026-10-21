@@ -42,6 +42,9 @@ import com.movtery.zalithlauncher.utils.file.compareSHA1
 import com.movtery.zalithlauncher.utils.file.formatFileSize
 import com.movtery.zalithlauncher.utils.logging.Logger
 import com.movtery.zalithlauncher.utils.network.isUsingMobileData
+import com.movtery.zalithlauncher.utils.platform.bytesToMB
+import com.movtery.zalithlauncher.utils.platform.getMaxMemoryForSettings
+import com.movtery.zalithlauncher.utils.platform.getTotalMemory
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -49,6 +52,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.serialization.Serializable
 import java.io.File
+import kotlin.math.min
 
 private const val TAG = "EclipsePreparer"
 
@@ -258,6 +262,8 @@ class EclipsePreparer(
                 isolationType = SettingState.ENABLE
                 serverIp = panel.server.address
                 versionSummary = "${manifest.name} ${manifest.version}"
+                //Só define se o jogador ainda não escolheu a memória desta versão
+                if (ramAllocation < 256) ramAllocation = recommendedRam()
             }.save()
 
             val gameHome = getGameHome()
@@ -266,6 +272,21 @@ class EclipsePreparer(
             //Atualiza a lista de versões do resto do app em segundo plano
             VersionsManager.refresh(TAG, trySetVersion = EclipseConfig.VERSION_NAME)
         }
+    }
+
+    /**
+     * Memória para o modpack (o padrão global do launcher para em 2 GB, pouco para o Cobblemon).
+     * Os limites usam a memória que o Android informa, que fica abaixo da anunciada (8 GB ≈ 7,4 GB).
+     */
+    private fun recommendedRam(): Int {
+        val deviceRam = getTotalMemory(context).bytesToMB()
+        val target = when {
+            deviceRam >= 11000 -> 4096
+            deviceRam >= 7000 -> 3584
+            deviceRam >= 5200 -> 3072
+            else -> 2560
+        }
+        return min(target, getMaxMemoryForSettings(context))
     }
 
     /**
