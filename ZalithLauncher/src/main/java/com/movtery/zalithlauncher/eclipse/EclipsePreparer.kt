@@ -36,6 +36,8 @@ import com.movtery.zalithlauncher.game.version.installed.SettingState
 import com.movtery.zalithlauncher.game.version.installed.Version
 import com.movtery.zalithlauncher.game.version.installed.VersionConfig
 import com.movtery.zalithlauncher.game.version.installed.VersionsManager
+import com.movtery.zalithlauncher.game.version.multiplayer.AllServers
+import com.movtery.zalithlauncher.game.version.multiplayer.ServerData
 import com.movtery.zalithlauncher.path.GLOBAL_JSON
 import com.movtery.zalithlauncher.ui.androidText
 import com.movtery.zalithlauncher.utils.file.compareSHA1
@@ -274,12 +276,36 @@ class EclipsePreparer(
                 if (ramAllocation < 256) ramAllocation = recommendedRam()
             }.save()
 
+            ensureServerInList(dir)
+
             val gameHome = getGameHome()
             readyVersion = VersionsManager.loadVersion(gameHome, EclipseConfig.VERSION_NAME)
                 ?.takeIf { it.isValid() }
             //Atualiza a lista de versões do resto do app em segundo plano
             VersionsManager.refresh(TAG, trySetVersion = EclipseConfig.VERSION_NAME)
         }
+    }
+
+    /**
+     * Coloca o servidor na lista de Multijogador (servers.dat) com o pacote de recursos ativado:
+     * o jogador consegue reconectar pela lista e o jogo aceita o pacote do servidor sem perguntar.
+     * Se o servidor já estiver na lista, respeita o que o jogador escolheu.
+     */
+    private suspend fun ensureServerInList(dir: File) {
+        val address = panel.server.address
+        val servers = AllServers()
+        servers.loadServers(File(dir, "servers.dat"))
+        if (servers.serverList.any { it.originIp.equals(address, ignoreCase = true) }) return
+
+        servers.addServer(
+            ServerData(
+                name = panel.server.name,
+                originIp = address,
+                texturePackStatus = ServerData.TexturePackStatus.ENABLED
+            )
+        )
+        servers.save(dir)
+        Logger.info(TAG, "Added $address to the multiplayer server list")
     }
 
     /**

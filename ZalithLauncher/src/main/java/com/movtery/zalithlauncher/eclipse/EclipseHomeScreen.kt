@@ -79,6 +79,7 @@ import com.movtery.zalithlauncher.game.account.isMicrosoftAccount
 import com.movtery.zalithlauncher.game.account.isMicrosoftLogging
 import com.movtery.zalithlauncher.game.account.localLogin
 import com.movtery.zalithlauncher.game.account.microsoftLogin
+import com.movtery.zalithlauncher.game.version.installed.VersionsManager
 import com.movtery.zalithlauncher.ui.androidText
 import com.movtery.zalithlauncher.ui.base.BaseScreen
 import com.movtery.zalithlauncher.ui.components.SimpleAlertDialog
@@ -137,6 +138,19 @@ fun EclipseHomeScreen(
                     showToast = { text, duration -> eventViewModel.sendToast(text, duration) },
                     submitError = submitError
                 )
+            }
+        }
+
+        //Mesmo menu do botão "Compartilhar Link" da tela de erro, mas funciona sem o jogo ter fechado
+        val shareLog: () -> Unit = {
+            val log = VersionsManager.versions.value
+                .firstOrNull { it.getVersionName() == EclipseConfig.VERSION_NAME }
+                ?.getLatestLog()
+                ?.takeIf { it.isFile }
+            if (log != null) {
+                eventViewModel.sendEvent(EventViewModel.Event.LogShare.ShareGameLog(log))
+            } else {
+                eventViewModel.sendToast(androidText(R.string.eclipse_share_log_none))
             }
         }
 
@@ -210,6 +224,7 @@ fun EclipseHomeScreen(
                         )
                     },
                     onPlay = play,
+                    onShareLog = shareLog,
                     onOpenLink = openLink
                 )
             }
@@ -384,6 +399,7 @@ private fun PlayColumn(
     onNickLogin: (String) -> Unit,
     onSwitchAccount: () -> Unit,
     onPlay: () -> Unit,
+    onShareLog: () -> Unit,
     onOpenLink: (String) -> Unit,
     modifier: Modifier = Modifier
 ) {
@@ -436,14 +452,25 @@ private fun PlayColumn(
                             fontWeight = FontWeight.Bold
                         )
                     }
-                    Text(
+                    Row(
                         modifier = Modifier.fillMaxWidth(),
-                        text = stringResource(R.string.eclipse_play_hint, panel.server.address),
-                        style = MaterialTheme.typography.labelSmall,
-                        color = TextOnImageDim,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis
-                    )
+                        verticalAlignment = Alignment.CenterVertically
+                    ) {
+                        Text(
+                            modifier = Modifier.weight(1f),
+                            text = stringResource(R.string.eclipse_play_hint, panel.server.address),
+                            style = MaterialTheme.typography.labelSmall,
+                            color = TextOnImageDim,
+                            maxLines = 1,
+                            overflow = TextOverflow.Ellipsis
+                        )
+                        TextButton(onClick = onShareLog) {
+                            Text(
+                                text = stringResource(R.string.eclipse_share_log),
+                                style = MaterialTheme.typography.labelMedium
+                            )
+                        }
+                    }
                 }
             }
         }

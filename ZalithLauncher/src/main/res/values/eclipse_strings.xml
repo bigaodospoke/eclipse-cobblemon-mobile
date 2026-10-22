@@ -45,4 +45,7 @@
     <string name="eclipse_about_text">Versão %1$s · versão modificada não oficial do Zalith Launcher 2, feita para o servidor Eclipse Cobblemon. Código-fonte aberto sob a GPL-3.0.</string>
     <string name="eclipse_about_source">Código-fonte</string>
     <string name="eclipse_about_upstream_text">Projeto original em que este launcher se baseia, por MovTery e colaboradores. Não tem ligação com o servidor Eclipse Cobblemon.</string>
+
+    <string name="eclipse_share_log">Enviar log do jogo</string>
+    <string name="eclipse_share_log_none">Ainda não há log do jogo. Toque em JOGAR pelo menos uma vez.</string>
 </resources>
