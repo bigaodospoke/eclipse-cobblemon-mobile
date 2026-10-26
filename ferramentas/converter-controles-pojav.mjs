@@ -72,21 +72,29 @@ function avaliar(expr, vars) {
   return Function("px", `"use strict"; return (${js});`)((dp) => dp * DENSIDADE);
 }
 
-function posicao(botao) {
+const MARGEM = 2 * DENSIDADE;
+
+/** Posição do botão em pixels na tela de referência */
+function posicaoPx(botao) {
   const larg = botao.width * DENSIDADE;
   const alt = botao.height * DENSIDADE;
   const vars = {
     screen_width: TELA_L, screen_height: TELA_A, width: larg, height: alt,
-    margin: 2 * DENSIDADE, preferred_scale: 100,
+    margin: MARGEM, preferred_scale: 100,
     top: 0, left: 0, right: TELA_L - larg, bottom: TELA_A - alt,
   };
-  const x = avaliar(botao.dynamicX, vars);
-  const y = avaliar(botao.dynamicY, vars);
+  return { x: avaliar(botao.dynamicX, vars), y: avaliar(botao.dynamicY, vars), larg, alt };
+}
+
+/** Converte pixels para a fração (0..10000) do espaço livre, como o launcher posiciona */
+function fracao({ x, y, larg, alt }) {
   return {
     x: Math.round(limitar(x / (TELA_L - larg), 0, 1) * 10000),
     y: Math.round(limitar(y / (TELA_A - alt), 0, 1) * 10000),
   };
 }
+
+const posicao = (botao) => fracao(posicaoPx(botao));
 
 function tamanho(botao) {
   const pct = (dp) => Math.round(limitar((dp * DENSIDADE) / TELA_A * 10000, 100, 10000));
@@ -144,7 +152,10 @@ const pojav = JSON.parse(fs.readFileSync(entrada, "utf8"));
 if (!Array.isArray(pojav.mControlDataList)) throw new Error("não parece um layout do PojavLauncher (falta mControlDataList)");
 
 const botoesGui = [];
-function converterBotao(b, semente, eventosExtras = []) {
+/**
+ * @param posicaoFixa posição já calculada (botões de gaveta, que o Pojav empilha sozinho)
+ */
+function converterBotao(b, semente, eventosExtras = [], posicaoFixa = null) {
   const eventos = [];
   let ehGui = false;
   for (const codigo of b.keycodes || []) {
@@ -162,7 +173,7 @@ function converterBotao(b, semente, eventosExtras = []) {
   const botao = {
     text: texto(b.name.trim()),
     uuid: id(`botao:${semente}`, 18),
-    position: posicao(b),
+    position: posicaoFixa || posicao(b),
     buttonSize: tamanho(b),
     buttonStyle: estilo(b),
     textAlignment: "Center",
@@ -190,8 +201,28 @@ pojav.mControlDataList.forEach((b, i) => {
 (pojav.mDrawerDataList || []).forEach((gaveta, i) => {
   const nome = gaveta.properties.name.trim() || `gaveta ${i + 1}`;
   const camada = { name: nome, uuid: id(`camada:gaveta:${i}:${nome}`, 12), hide: true, visibilityType: "always", normalButtons: [] };
-  gaveta.buttonProperties.forEach((b, j) => {
-    const botao = converterBotao(b, `gaveta:${i}:${j}:${b.name}`);
+
+  // Botões repetidos (mesmo nome e mesmas teclas) costumam ser cópia acidental no editor do Pojav
+  const vistos = new Set();
+  const internos = gaveta.buttonProperties.filter((b) => {
+    const chave = `${b.name.trim()}|${(b.keycodes || []).join(",")}`;
+    if (vistos.has(chave)) { avisos.push(`gaveta "${nome}": "${b.name.trim()}" repetido — mantido só um`); return false; }
+    vistos.add(chave);
+    return true;
+  });
+
+  // Como no Pojav: os botões da gaveta têm o tamanho do botão da gaveta e ficam empilhados
+  // na direção dela, com 2dp entre eles (FREE = cada um na própria posição)
+  const base = posicaoPx(gaveta.properties);
+  internos.forEach((b, j) => {
+    const passo = j + 1;
+    const desloc = {
+      DOWN: [0, (base.alt + MARGEM) * passo], UP: [0, -(base.alt + MARGEM) * passo],
+      RIGHT: [(base.larg + MARGEM) * passo, 0], LEFT: [-(base.larg + MARGEM) * passo, 0],
+    }[gaveta.orientation];
+    const interno = { ...b, width: gaveta.properties.width, height: gaveta.properties.height };
+    const fixa = desloc ? fracao({ x: base.x + desloc[0], y: base.y + desloc[1], larg: base.larg, alt: base.alt }) : null;
+    const botao = converterBotao(desloc ? interno : b, `gaveta:${i}:${j}:${b.name}`, [], fixa);
     if (botao) camada.normalButtons.push(botao);
   });
   const abrir = converterBotao(gaveta.properties, `gaveta:${i}:${nome}`, [{ type: "switch_layer", key: camada.uuid }]);

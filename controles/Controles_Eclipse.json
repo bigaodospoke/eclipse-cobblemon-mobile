@@ -5,9 +5,9 @@
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": true,
-      "dynamicX": "${margin} * 3 + (px(79.2381) / 100.0 * ${preferred_scale}) * 2 + (px(79.2381) / 100.0 * ${preferred_scale}) + ${margin}",
-      "dynamicY": "${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - ${height} - ${margin}",
-      "height": 28.952381,
+      "dynamicX": "0.33398375 * ${screen_width} - (px(88.666664) / 100.0 * ${preferred_scale}) - ${margin} + (px(88.666664) / 100.0 * ${preferred_scale}) + ${margin}",
+      "dynamicY": "0.04961577 * ${screen_height}",
+      "height": 37.74799,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -21,16 +21,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 79.2381
+      "width": 88.364624
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": false,
-      "dynamicX": "0.9797078 * ${screen_width} - (px(48.761906) / 100.0 * ${preferred_scale}) - ${width} - ${margin}",
-      "dynamicY": "0.7208044 * ${screen_height} - (px(48.761906) /100.0 * ${preferred_scale}) + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin}",
-      "height": 49.52381,
+      "dynamicX": "0.84230405 * ${screen_width} - ${width}",
+      "dynamicY": "0.7720453 * ${screen_height} - ${height}",
+      "height": 69.91957,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -44,16 +44,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 57.142857
+      "width": 79.35657
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": true,
-      "dynamicX": "0.9797078 * ${screen_width} - (px(48.761906) / 100.0 * ${preferred_scale}) - ${width} - ${margin}",
-      "dynamicY": "0.7208044 * ${screen_height} - (px(48.761906) /100.0 * ${preferred_scale}) + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin}",
-      "height": 49.52381,
+      "dynamicX": "0.8629909 * ${screen_width} - ${width}",
+      "dynamicY": "0.40155682 * ${screen_height}",
+      "height": 72.06435,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -67,16 +67,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 57.142857
+      "width": 83.64611
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": true,
-      "dynamicX": "${margin} * 3 + (px(79.2381) / 100.0 * ${preferred_scale}) * 2 - ${width} - ${margin}",
-      "dynamicY": "${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin}",
-      "height": 28.952381,
+      "dynamicX": "0.33398375 * ${screen_width} - (px(88.666664) / 100.0 * ${preferred_scale}) - ${margin} + (px(88.666664) / 100.0 * ${preferred_scale}) + ${margin} + (px(88.666664) / 100.0 * ${preferred_scale}) + ${margin}",
+      "dynamicY": "0.10346817 * ${screen_height}",
+      "height": 37.74799,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -90,16 +90,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 79.2381
+      "width": 88.364624
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": true,
-      "dynamicX": "${margin} * 3 + (px(79.2381) / 100.0 * ${preferred_scale}) * 2 - ${width} - ${margin}",
-      "dynamicY": "${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - ${height} - ${margin}",
-      "height": 28.952381,
+      "dynamicX": "0.33398375 * ${screen_width} - (px(88.666664) / 100.0 * ${preferred_scale}) - ${margin} + (px(88.666664) / 100.0 * ${preferred_scale}) + ${margin} - ${width} - ${margin}",
+      "dynamicY": "0.04961577 * ${screen_height} + (px(38.0) /100.0 * ${preferred_scale}) + ${margin}",
+      "height": 37.74799,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -113,16 +113,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 79.2381
+      "width": 88.364624
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": true,
-      "dynamicX": "${margin}",
-      "dynamicY": "${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - ${height} - ${margin}",
-      "height": 28.952381,
+      "dynamicX": "0.33398375 * ${screen_width} - (px(88.666664) / 100.0 * ${preferred_scale}) - ${margin} - (px(88.666664) / 100.0 * ${preferred_scale}) - ${margin}",
+      "dynamicY": "0.04961577 * ${screen_height} + (px(38.0) /100.0 * ${preferred_scale}) + ${margin}",
+      "height": 37.74799,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -136,16 +136,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 79.2381
+      "width": 88.364624
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": true,
-      "dynamicX": "${margin} * 3 + (px(79.2381) / 100.0 * ${preferred_scale}) * 2",
-      "dynamicY": "${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - ${height} - ${margin}",
-      "height": 28.952381,
+      "dynamicX": "0.33398375 * ${screen_width} - (px(88.666664) / 100.0 * ${preferred_scale}) - ${margin}",
+      "dynamicY": "0.04961577 * ${screen_height}",
+      "height": 37.74799,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -159,16 +159,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 79.2381
+      "width": 88.364624
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": true,
-      "dynamicX": "${margin} * 3 + (px(79.2381) / 100.0 * ${preferred_scale}) * 2 + (px(79.2381) / 100.0 * ${preferred_scale}) + ${margin} + (px(79.2381) / 100.0 * ${preferred_scale}) + ${margin}",
-      "dynamicY": "${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin}",
-      "height": 28.952381,
+      "dynamicX": "0.6379787 * ${screen_width} - ${width}",
+      "dynamicY": "0.026333569 * ${screen_height}",
+      "height": 26.595175,
       "isSwipeable": false,
       "isToggle": true,
       "keycodes": [
@@ -182,16 +182,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 79.2381
+      "width": 82.35925
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": true,
-      "dynamicX": "${margin}",
-      "dynamicY": "${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin}",
-      "height": 28.952381,
+      "dynamicX": "0.33398375 * ${screen_width} - (px(88.666664) / 100.0 * ${preferred_scale}) - ${margin} - ${width} - ${margin}",
+      "dynamicY": "0.04961577 * ${screen_height}",
+      "height": 37.74799,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -205,16 +205,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 79.2381
+      "width": 88.364624
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": true,
-      "dynamicX": "0.9797078 * ${screen_width} - (px(48.761906) / 100.0 * ${preferred_scale}) - ${width} - ${margin}",
-      "dynamicY": "0.7208044 * ${screen_height} - (px(48.761906) /100.0 * ${preferred_scale}) + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin}",
-      "height": 49.52381,
+      "dynamicX": "0.89010775 * ${screen_width} - ${width}",
+      "dynamicY": "0.14808558 * ${screen_height}",
+      "height": 69.490616,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -228,16 +228,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 57.142857
+      "width": 81.07239
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": true,
-      "dynamicX": "0.9797078 * ${screen_width} - (px(48.761906) / 100.0 * ${preferred_scale}) - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} + (px(57.142857) / 100.0 * ${preferred_scale}) + ${margin} - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} + (px(57.142857) / 100.0 * ${preferred_scale}) + ${margin} - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} + (px(57.142857) / 100.0 * ${preferred_scale}) + ${margin} - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} - (px(48.761906) / 100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) / 100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) / 100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) / 100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) / 100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) / 100.0 * ${preferred_scale}) + ${margin} + (px(57.142857) / 100.0 * ${preferred_scale}) + ${margin}",
-      "dynamicY": "0.7208044 * ${screen_height} - (px(48.761906) /100.0 * ${preferred_scale}) + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin}",
-      "height": 49.52381,
+      "dynamicX": "0.6950921 * ${screen_width} - ${width}",
+      "dynamicY": "0.14416142 * ${screen_height}",
+      "height": 66.05898,
       "isSwipeable": false,
       "isToggle": true,
       "keycodes": [
@@ -251,16 +251,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 57.142857
+      "width": 79.78552
     },
     {
       "bgColor": 335544320,
       "cornerRadius": 60.0,
       "displayInGame": true,
       "displayInMenu": false,
-      "dynamicX": "0.83042806 * ${screen_width} - ${width}",
-      "dynamicY": "0.7877062 * ${screen_height} - ${height}",
-      "height": 72.38095,
+      "dynamicX": "0.9595525 * ${screen_width} - ${width}",
+      "dynamicY": "0.8815144 * ${screen_height} - ${height}",
+      "height": 79.78552,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -274,16 +274,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 72.38095
+      "width": 79.78552
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": false,
-      "dynamicX": "0.9797078 * ${screen_width} - (px(48.761906) / 100.0 * ${preferred_scale})",
-      "dynamicY": "0.7208044 * ${screen_height} - (px(48.761906) /100.0 * ${preferred_scale}) + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin}",
-      "height": 48.761906,
+      "dynamicX": "0.97780937 * ${screen_width} - ${width}",
+      "dynamicY": "0.2246575 * ${screen_height}",
+      "height": 55.764076,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -297,16 +297,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 48.761906
+      "width": 56.62199
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": false,
-      "dynamicX": "0.9797078 * ${screen_width} - (px(48.761906) / 100.0 * ${preferred_scale})",
-      "dynamicY": "0.7208044 * ${screen_height} - (px(48.761906) /100.0 * ${preferred_scale}) + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin}",
-      "height": 48.761906,
+      "dynamicX": "0.2104406 * ${screen_width}",
+      "dynamicY": "0.28616884 * ${screen_height}",
+      "height": 72.49329,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -320,16 +320,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 48.761906
+      "width": 74.63807
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": false,
-      "dynamicX": "0.9797078 * ${screen_width} - (px(48.761906) / 100.0 * ${preferred_scale})",
-      "dynamicY": "0.7208044 * ${screen_height} - (px(48.761906) /100.0 * ${preferred_scale}) + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin}",
-      "height": 48.761906,
+      "dynamicX": "0.9764377 * ${screen_width} - ${width}",
+      "dynamicY": "0.067421995 * ${screen_height}",
+      "height": 56.62199,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -343,16 +343,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 48.761906
+      "width": 58.3378
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": false,
-      "dynamicX": "0.9797078 * ${screen_width} - (px(48.761906) / 100.0 * ${preferred_scale})",
-      "dynamicY": "0.7208044 * ${screen_height} - (px(48.761906) /100.0 * ${preferred_scale}) + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - ${height} - ${margin}",
-      "height": 48.761906,
+      "dynamicX": "0.79213923 * ${screen_width} - ${width}",
+      "dynamicY": "0.20316902 * ${screen_height}",
+      "height": 67.34584,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -366,16 +366,16 @@
       "passThruEnabled": false,
       "strokeColor": -15922421,
       "strokeWidth": 3.0,
-      "width": 48.761906
+      "width": 75.924934
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": false,
-      "dynamicX": "0.9797078 * ${screen_width} - (px(48.761906) / 100.0 * ${preferred_scale}) - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} + (px(57.142857) / 100.0 * ${preferred_scale}) + ${margin} - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} + (px(57.142857) / 100.0 * ${preferred_scale}) + ${margin} - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} + (px(57.142857) / 100.0 * ${preferred_scale}) + ${margin} - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} - (px(48.761906) / 100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) / 100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) / 100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) / 100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) / 100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) / 100.0 * ${preferred_scale}) + ${margin}",
-      "dynamicY": "0.7208044 * ${screen_height} - (px(48.761906) /100.0 * ${preferred_scale}) + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin}",
-      "height": 49.52381,
+      "dynamicX": "0.77507216 * ${screen_width} - ${width}",
+      "dynamicY": "0.9641968 * ${screen_height} - ${height}",
+      "height": 78.92761,
       "isSwipeable": false,
       "isToggle": true,
       "keycodes": [
@@ -389,16 +389,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 57.142857
+      "width": 81.9303
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 31.0,
       "displayInGame": true,
       "displayInMenu": true,
-      "dynamicX": "${margin} * 3 + (px(79.2381) / 100.0 * ${preferred_scale}) * 2",
-      "dynamicY": "${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin} - (px(28.952381) /100.0 * ${preferred_scale}) - ${margin} + (px(28.952381) /100.0 * ${preferred_scale}) + ${margin}",
-      "height": 28.952381,
+      "dynamicX": "0.33398375 * ${screen_width} - (px(88.666664) / 100.0 * ${preferred_scale}) - ${margin} + (px(88.666664) / 100.0 * ${preferred_scale}) + ${margin}",
+      "dynamicY": "0.04961577 * ${screen_height} + (px(38.0) /100.0 * ${preferred_scale}) + ${margin}",
+      "height": 37.74799,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -412,16 +412,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 79.2381
+      "width": 88.364624
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": false,
-      "dynamicX": "0.60820144 * ${screen_width} - (px(72.38095) / 100.0 * ${preferred_scale}) + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - ${width} - ${margin}",
-      "dynamicY": "0.87886465 * ${screen_height} - (px(34.285713) /100.0 * ${preferred_scale})",
-      "height": 34.285713,
+      "dynamicX": "0.4144233 * ${screen_width} + (px(81.333336) / 100.0 * ${preferred_scale}) + ${margin} - ${width} - ${margin}",
+      "dynamicY": "0.8537839 * ${screen_height} - (px(37.333332) /100.0 * ${preferred_scale})",
+      "height": 37.74799,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -435,16 +435,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 72.38095
+      "width": 81.07239
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": false,
-      "dynamicX": "0.60820144 * ${screen_width} - (px(72.38095) / 100.0 * ${preferred_scale}) + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin}",
-      "dynamicY": "0.87886465 * ${screen_height} - (px(34.285713) /100.0 * ${preferred_scale})",
-      "height": 34.285713,
+      "dynamicX": "0.4144233 * ${screen_width} + (px(81.333336) / 100.0 * ${preferred_scale}) + ${margin}",
+      "dynamicY": "0.8537839 * ${screen_height} - ${height}",
+      "height": 37.319035,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -458,16 +458,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 72.38095
+      "width": 83.21715
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": false,
-      "dynamicX": "0.9797078 * ${screen_width} - (px(48.761906) / 100.0 * ${preferred_scale}) - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} + (px(57.142857) / 100.0 * ${preferred_scale}) + ${margin} - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} + (px(57.142857) / 100.0 * ${preferred_scale}) + ${margin} - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} + (px(57.142857) / 100.0 * ${preferred_scale}) + ${margin} - (px(57.142857) / 100.0 * ${preferred_scale}) - ${margin} - (px(48.761906) / 100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) / 100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) / 100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) / 100.0 * ${preferred_scale}) + ${margin} - ${width} - ${margin}",
-      "dynamicY": "0.7208044 * ${screen_height} - (px(48.761906) /100.0 * ${preferred_scale}) + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} - (px(48.761906) /100.0 * ${preferred_scale}) - ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin} + (px(48.761906) /100.0 * ${preferred_scale}) + ${margin}",
-      "height": 48.761906,
+      "dynamicX": "0.68381864 * ${screen_width} - ${width}",
+      "dynamicY": "0.86459804 * ${screen_height} - ${height}",
+      "height": 52.33244,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -481,16 +481,16 @@
       "passThruEnabled": false,
       "strokeColor": -16777216,
       "strokeWidth": 3.0,
-      "width": 48.761906
+      "width": 57.050938
     },
     {
       "bgColor": 1291845632,
       "cornerRadius": 30.0,
       "displayInGame": true,
       "displayInMenu": false,
-      "dynamicX": "0.30367297 * ${screen_width}",
-      "dynamicY": "0.9525029 * ${screen_height} - ${height}",
-      "height": 48.761906,
+      "dynamicX": "0.32302088 * ${screen_width}",
+      "dynamicY": "0.8623259 * ${screen_height} - ${height}",
+      "height": 53.19035,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -504,7 +504,7 @@
       "passThruEnabled": false,
       "strokeColor": -15922421,
       "strokeWidth": 3.0,
-      "width": 48.761906
+      "width": 58.766758
     },
     {
       "bgColor": 1291845632,
@@ -513,7 +513,7 @@
       "displayInMenu": true,
       "dynamicX": "0.057325486 * ${screen_width}",
       "dynamicY": "1.0 * ${screen_height} - ${height}",
-      "height": 19.047619,
+      "height": 18.873995,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -527,7 +527,7 @@
       "passThruEnabled": false,
       "strokeColor": -1,
       "strokeWidth": 0.0,
-      "width": 38.095238
+      "width": 37.74799
     }
   ],
   "mDrawerDataList": [
@@ -538,9 +538,9 @@
           "cornerRadius": 30.0,
           "displayInGame": true,
           "displayInMenu": true,
-          "dynamicX": "0.8417512 * ${screen_width} - ${width}",
-          "dynamicY": "0.10671296 * ${screen_height}",
-          "height": 41.904762,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.08957499 * ${screen_height}",
+          "height": 41.608574,
           "isSwipeable": false,
           "isToggle": false,
           "keycodes": [
@@ -554,16 +554,16 @@
           "passThruEnabled": false,
           "strokeColor": -16119800,
           "strokeWidth": 3.0,
-          "width": 72.38095
+          "width": 72.06435
         },
         {
           "bgColor": 1291845632,
           "cornerRadius": 30.0,
           "displayInGame": true,
           "displayInMenu": true,
-          "dynamicX": "0.8417512 * ${screen_width} - ${width}",
-          "dynamicY": "0.21342592 * ${screen_height}",
-          "height": 41.904762,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.17914999 * ${screen_height}",
+          "height": 41.608574,
           "isSwipeable": false,
           "isToggle": false,
           "keycodes": [
@@ -577,16 +577,16 @@
           "passThruEnabled": false,
           "strokeColor": -16777216,
           "strokeWidth": 3.0,
-          "width": 72.38095
+          "width": 72.06435
         },
         {
           "bgColor": 1291845632,
           "cornerRadius": 30.0,
           "displayInGame": true,
           "displayInMenu": true,
-          "dynamicX": "0.8417512 * ${screen_width} - ${width}",
-          "dynamicY": "0.3201389 * ${screen_height}",
-          "height": 41.904762,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.26872498 * ${screen_height}",
+          "height": 41.608574,
           "isSwipeable": false,
           "isToggle": false,
           "keycodes": [
@@ -600,16 +600,16 @@
           "passThruEnabled": false,
           "strokeColor": -16777216,
           "strokeWidth": 3.0,
-          "width": 72.38095
+          "width": 72.06435
         },
         {
           "bgColor": 1291845632,
           "cornerRadius": 30.0,
           "displayInGame": true,
           "displayInMenu": true,
-          "dynamicX": "0.8417512 * ${screen_width} - ${width}",
-          "dynamicY": "0.42685184 * ${screen_height}",
-          "height": 41.904762,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.35829997 * ${screen_height}",
+          "height": 41.608574,
           "isSwipeable": false,
           "isToggle": false,
           "keycodes": [
@@ -623,16 +623,16 @@
           "passThruEnabled": false,
           "strokeColor": -16777216,
           "strokeWidth": 3.0,
-          "width": 72.38095
+          "width": 72.06435
         },
         {
           "bgColor": 1291845632,
           "cornerRadius": 30.0,
           "displayInGame": true,
           "displayInMenu": true,
-          "dynamicX": "0.8417512 * ${screen_width} - ${width}",
-          "dynamicY": "0.6354167 * ${screen_height} - ${height}",
-          "height": 41.904762,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.44787496 * ${screen_height}",
+          "height": 41.608574,
           "isSwipeable": false,
           "isToggle": false,
           "keycodes": [
@@ -646,16 +646,16 @@
           "passThruEnabled": false,
           "strokeColor": -16777216,
           "strokeWidth": 3.0,
-          "width": 72.38095
+          "width": 72.06435
         },
         {
           "bgColor": 1291845632,
           "cornerRadius": 30.0,
           "displayInGame": true,
           "displayInMenu": true,
-          "dynamicX": "0.8417512 * ${screen_width} - ${width}",
-          "dynamicY": "0.7421296 * ${screen_height} - ${height}",
-          "height": 41.904762,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.6229266 * ${screen_height} - ${height}",
+          "height": 41.608574,
           "isSwipeable": false,
           "isToggle": false,
           "keycodes": [
@@ -669,7 +669,99 @@
           "passThruEnabled": false,
           "strokeColor": -16777216,
           "strokeWidth": 3.0,
-          "width": 72.38095
+          "width": 72.06435
+        },
+        {
+          "bgColor": 1291845632,
+          "cornerRadius": 30.0,
+          "displayInGame": true,
+          "displayInMenu": true,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.7125016 * ${screen_height} - ${height}",
+          "height": 41.608574,
+          "isSwipeable": false,
+          "isToggle": false,
+          "keycodes": [
+            79,
+            0,
+            0,
+            0
+          ],
+          "name": "ABRIR",
+          "opacity": 0.7,
+          "passThruEnabled": false,
+          "strokeColor": -16119800,
+          "strokeWidth": 3.0,
+          "width": 72.06435
+        },
+        {
+          "bgColor": 1291845632,
+          "cornerRadius": 30.0,
+          "displayInGame": true,
+          "displayInMenu": true,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.8020766 * ${screen_height} - ${height}",
+          "height": 41.608574,
+          "isSwipeable": false,
+          "isToggle": false,
+          "keycodes": [
+            79,
+            0,
+            0,
+            0
+          ],
+          "name": "ABRIR",
+          "opacity": 0.7,
+          "passThruEnabled": false,
+          "strokeColor": -16119800,
+          "strokeWidth": 3.0,
+          "width": 72.06435
+        },
+        {
+          "bgColor": 1291845632,
+          "cornerRadius": 30.0,
+          "displayInGame": true,
+          "displayInMenu": true,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.8916516 * ${screen_height} - ${height}",
+          "height": 41.608574,
+          "isSwipeable": false,
+          "isToggle": false,
+          "keycodes": [
+            79,
+            0,
+            0,
+            0
+          ],
+          "name": "ABRIR",
+          "opacity": 0.7,
+          "passThruEnabled": false,
+          "strokeColor": -16119800,
+          "strokeWidth": 3.0,
+          "width": 72.06435
+        },
+        {
+          "bgColor": 1291845632,
+          "cornerRadius": 30.0,
+          "displayInGame": true,
+          "displayInMenu": true,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.98122656 * ${screen_height} - ${height}",
+          "height": 41.608574,
+          "isSwipeable": false,
+          "isToggle": false,
+          "keycodes": [
+            79,
+            0,
+            0,
+            0
+          ],
+          "name": "ABRIR",
+          "opacity": 0.7,
+          "passThruEnabled": false,
+          "strokeColor": -16119800,
+          "strokeWidth": 3.0,
+          "width": 72.06435
         }
       ],
       "orientation": "DOWN",
@@ -678,9 +770,9 @@
         "cornerRadius": 30.0,
         "displayInGame": true,
         "displayInMenu": true,
-        "dynamicX": "0.8417512 * ${screen_width} - (px(72.38095) / 100.0 * ${preferred_scale}) - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin}",
-        "dynamicY": "0.0 * ${screen_height}",
-        "height": 41.904762,
+        "dynamicX": "0.83887076 * ${screen_width} - ${width}",
+        "dynamicY": "0.0045073964 * ${screen_height}",
+        "height": 41.608574,
         "isSwipeable": false,
         "isToggle": false,
         "keycodes": [
@@ -694,7 +786,7 @@
         "passThruEnabled": false,
         "strokeColor": -16777216,
         "strokeWidth": 3.0,
-        "width": 72.38095
+        "width": 72.06435
       }
     },
     {
@@ -704,9 +796,9 @@
           "cornerRadius": 30.0,
           "displayInGame": true,
           "displayInMenu": true,
-          "dynamicX": "0.75733566 * ${screen_width} - ${width}",
-          "dynamicY": "0.10671296 * ${screen_height}",
-          "height": 41.904762,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.08957499 * ${screen_height}",
+          "height": 41.608574,
           "isSwipeable": false,
           "isToggle": false,
           "keycodes": [
@@ -720,16 +812,16 @@
           "passThruEnabled": false,
           "strokeColor": -16777216,
           "strokeWidth": 3.0,
-          "width": 72.38095
+          "width": 72.06435
         },
         {
           "bgColor": 1291845632,
           "cornerRadius": 30.0,
           "displayInGame": true,
           "displayInMenu": true,
-          "dynamicX": "0.75733566 * ${screen_width} - ${width}",
-          "dynamicY": "0.21342592 * ${screen_height}",
-          "height": 41.904762,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.17914999 * ${screen_height}",
+          "height": 41.608574,
           "isSwipeable": false,
           "isToggle": false,
           "keycodes": [
@@ -743,7 +835,99 @@
           "passThruEnabled": false,
           "strokeColor": -16777216,
           "strokeWidth": 3.0,
-          "width": 72.38095
+          "width": 72.06435
+        },
+        {
+          "bgColor": 1291845632,
+          "cornerRadius": 30.0,
+          "displayInGame": true,
+          "displayInMenu": true,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.26872498 * ${screen_height}",
+          "height": 41.608574,
+          "isSwipeable": false,
+          "isToggle": false,
+          "keycodes": [
+            259,
+            0,
+            0,
+            0
+          ],
+          "name": "ESCONDER",
+          "opacity": 0.7,
+          "passThruEnabled": false,
+          "strokeColor": -16777216,
+          "strokeWidth": 3.0,
+          "width": 72.06435
+        },
+        {
+          "bgColor": 1291845632,
+          "cornerRadius": 30.0,
+          "displayInGame": true,
+          "displayInMenu": true,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.35829997 * ${screen_height}",
+          "height": 41.608574,
+          "isSwipeable": false,
+          "isToggle": false,
+          "keycodes": [
+            71,
+            0,
+            0,
+            0
+          ],
+          "name": "DESCER",
+          "opacity": 0.6,
+          "passThruEnabled": false,
+          "strokeColor": -16777216,
+          "strokeWidth": 3.0,
+          "width": 72.06435
+        },
+        {
+          "bgColor": 1291845632,
+          "cornerRadius": 30.0,
+          "displayInGame": true,
+          "displayInMenu": true,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.44787496 * ${screen_height}",
+          "height": 41.608574,
+          "isSwipeable": false,
+          "isToggle": false,
+          "keycodes": [
+            259,
+            0,
+            0,
+            0
+          ],
+          "name": "ESCONDER",
+          "opacity": 0.7,
+          "passThruEnabled": false,
+          "strokeColor": -16777216,
+          "strokeWidth": 3.0,
+          "width": 72.06435
+        },
+        {
+          "bgColor": 1291845632,
+          "cornerRadius": 30.0,
+          "displayInGame": true,
+          "displayInMenu": true,
+          "dynamicX": "0.0 * ${screen_width}",
+          "dynamicY": "0.6229266 * ${screen_height} - ${height}",
+          "height": 41.608574,
+          "isSwipeable": false,
+          "isToggle": false,
+          "keycodes": [
+            259,
+            0,
+            0,
+            0
+          ],
+          "name": "ESCONDER",
+          "opacity": 0.7,
+          "passThruEnabled": false,
+          "strokeColor": -16777216,
+          "strokeWidth": 3.0,
+          "width": 72.06435
         }
       ],
       "orientation": "DOWN",
@@ -752,9 +936,9 @@
         "cornerRadius": 30.0,
         "displayInGame": true,
         "displayInMenu": true,
-        "dynamicX": "0.8417512 * ${screen_width} - (px(72.38095) / 100.0 * ${preferred_scale}) - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - (px(72.38095) / 100.0 * ${preferred_scale}) - ${margin} + (px(72.38095) / 100.0 * ${preferred_scale}) + ${margin} - ${width} - ${margin}",
-        "dynamicY": "0.0 * ${screen_height}",
-        "height": 41.904762,
+        "dynamicX": "0.7403729 * ${screen_width} - ${width}",
+        "dynamicY": "0.018545082 * ${screen_height}",
+        "height": 41.608574,
         "isSwipeable": false,
         "isToggle": false,
         "keycodes": [
@@ -768,7 +952,7 @@
         "passThruEnabled": false,
         "strokeColor": -16777216,
         "strokeWidth": 3.0,
-        "width": 72.38095
+        "width": 72.06435
       }
     }
   ],
@@ -780,9 +964,9 @@
       "cornerRadius": 0.0,
       "displayInGame": true,
       "displayInMenu": false,
-      "dynamicX": "0.04906656 * ${screen_width}",
-      "dynamicY": "0.87158203 * ${screen_height} - ${height}",
-      "height": 190.4762,
+      "dynamicX": "0.096888565 * ${screen_width}",
+      "dynamicY": "0.91668874 * ${screen_height} - ${height}",
+      "height": 166.86328,
       "isSwipeable": false,
       "isToggle": false,
       "keycodes": [
@@ -796,9 +980,9 @@
       "passThruEnabled": false,
       "strokeColor": -16185593,
       "strokeWidth": 10.0,
-      "width": 190.4762
+      "width": 166.86328
     }
   ],
   "scaledAt": 100.0,
-  "version": 7
+  "version": 8
 }

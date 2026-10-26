@@ -12,8 +12,8 @@
       "default": "Controles oficiais do servidor Eclipse Cobblemon",
       "matchQueue": []
     },
-    "versionCode": 1,
-    "versionName": "1.0"
+    "versionCode": 2,
+    "versionName": "2.0"
   },
   "layers": [
     {
@@ -29,15 +29,15 @@
           },
           "uuid": "818805baedb06f4151",
           "position": {
-            "x": 1970,
-            "y": 862
+            "x": 3697,
+            "y": 1617
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 79.24,
-            "heightDp": 28.95,
-            "widthPercentage": 1926,
-            "heightPercentage": 704,
+            "widthDp": 88.36,
+            "heightDp": 37.75,
+            "widthPercentage": 2148,
+            "heightPercentage": 917,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -73,15 +73,15 @@
           },
           "uuid": "4dde86a64d8f0f896b",
           "position": {
-            "x": 2943,
-            "y": 52
+            "x": 3697,
+            "y": 546
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 79.24,
-            "heightDp": 28.95,
-            "widthPercentage": 1926,
-            "heightPercentage": 704,
+            "widthDp": 88.36,
+            "heightDp": 37.75,
+            "widthPercentage": 2148,
+            "heightPercentage": 917,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -105,15 +105,15 @@
           },
           "uuid": "9949a27034479ddd6b",
           "position": {
-            "x": 9191,
-            "y": 5444
+            "x": 8273,
+            "y": 7254
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 57.14,
-            "heightDp": 49.52,
-            "widthPercentage": 1389,
-            "heightPercentage": 1204,
+            "widthDp": 79.36,
+            "heightDp": 69.92,
+            "widthPercentage": 1929,
+            "heightPercentage": 1699,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -137,15 +137,15 @@
           },
           "uuid": "5ffe6de079b6de727b",
           "position": {
-            "x": 9191,
-            "y": 6847
+            "x": 8492,
+            "y": 4868
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 57.14,
-            "heightDp": 49.52,
-            "widthPercentage": 1389,
-            "heightPercentage": 1204,
+            "widthDp": 83.65,
+            "heightDp": 72.06,
+            "widthPercentage": 2033,
+            "heightPercentage": 1752,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -169,15 +169,15 @@
           },
           "uuid": "64380a0d4a72597974",
           "position": {
-            "x": 997,
-            "y": 52
+            "x": 2603,
+            "y": 1617
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 79.24,
-            "heightDp": 28.95,
-            "widthPercentage": 1926,
-            "heightPercentage": 704,
+            "widthDp": 88.36,
+            "heightDp": 37.75,
+            "widthPercentage": 2148,
+            "heightPercentage": 917,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -201,15 +201,15 @@
           },
           "uuid": "4afc7a11a30a5804d7",
           "position": {
-            "x": 24,
-            "y": 52
+            "x": 1502,
+            "y": 1617
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 79.24,
-            "heightDp": 28.95,
-            "widthPercentage": 1926,
-            "heightPercentage": 704,
+            "widthDp": 88.36,
+            "heightDp": 37.75,
+            "widthPercentage": 2148,
+            "heightPercentage": 917,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -233,15 +233,15 @@
           },
           "uuid": "86ff6090695e7654f5",
           "position": {
-            "x": 1970,
-            "y": 52
+            "x": 2599,
+            "y": 546
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 79.24,
-            "heightDp": 28.95,
-            "widthPercentage": 1926,
-            "heightPercentage": 704,
+            "widthDp": 88.36,
+            "heightDp": 37.75,
+            "widthPercentage": 2148,
+            "heightPercentage": 917,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -265,15 +265,15 @@
           },
           "uuid": "d64a731259f26839c7",
           "position": {
-            "x": 3915,
-            "y": 52
+            "x": 6021,
+            "y": 282
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 79.24,
-            "heightDp": 28.95,
-            "widthPercentage": 1926,
-            "heightPercentage": 704,
+            "widthDp": 82.36,
+            "heightDp": 26.6,
+            "widthPercentage": 2002,
+            "heightPercentage": 646,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -297,15 +297,15 @@
           },
           "uuid": "351d2bc1f7069b6608",
           "position": {
-            "x": 24,
-            "y": 862
+            "x": 1505,
+            "y": 546
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 79.24,
-            "heightDp": 28.95,
-            "widthPercentage": 1926,
-            "heightPercentage": 704,
+            "widthDp": 88.36,
+            "heightDp": 37.75,
+            "widthPercentage": 2148,
+            "heightPercentage": 917,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -329,15 +329,15 @@
           },
           "uuid": "bc73e729a48bfc3930",
           "position": {
-            "x": 9191,
-            "y": 8250
+            "x": 8794,
+            "y": 1782
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 57.14,
-            "heightDp": 49.52,
-            "widthPercentage": 1389,
-            "heightPercentage": 1204,
+            "widthDp": 81.07,
+            "heightDp": 69.49,
+            "widthPercentage": 1971,
+            "heightPercentage": 1689,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -361,15 +361,15 @@
           },
           "uuid": "86b334d73a6cd7351a",
           "position": {
-            "x": 9191,
-            "y": 9652
+            "x": 6659,
+            "y": 1717
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 57.14,
-            "heightDp": 49.52,
-            "widthPercentage": 1389,
-            "heightPercentage": 1204,
+            "widthDp": 79.79,
+            "heightDp": 66.06,
+            "widthPercentage": 1939,
+            "heightPercentage": 1606,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -393,15 +393,15 @@
           },
           "uuid": "58a253031fb066f718",
           "position": {
-            "x": 8158,
-            "y": 7424
+            "x": 9557,
+            "y": 8530
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 72.38,
-            "heightDp": 72.38,
-            "widthPercentage": 1759,
-            "heightPercentage": 1759,
+            "widthDp": 79.79,
+            "heightDp": 79.79,
+            "widthPercentage": 1939,
+            "heightPercentage": 1939,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -425,15 +425,15 @@
           },
           "uuid": "57d378458bbd447359",
           "position": {
-            "x": 9786,
-            "y": 9632
+            "x": 9763,
+            "y": 2599
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 48.76,
-            "heightDp": 48.76,
-            "widthPercentage": 1185,
-            "heightPercentage": 1185,
+            "widthDp": 56.62,
+            "heightDp": 55.76,
+            "widthPercentage": 1376,
+            "heightPercentage": 1355,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -457,15 +457,15 @@
           },
           "uuid": "c6d364bb0fec4c1459",
           "position": {
-            "x": 9786,
-            "y": 8232
+            "x": 2291,
+            "y": 3474
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 48.76,
-            "heightDp": 48.76,
-            "widthPercentage": 1185,
-            "heightPercentage": 1185,
+            "widthDp": 74.64,
+            "heightDp": 72.49,
+            "widthPercentage": 1814,
+            "heightPercentage": 1762,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -489,15 +489,15 @@
           },
           "uuid": "9a38e05ddbdbdc704c",
           "position": {
-            "x": 9786,
-            "y": 6833
+            "x": 9748,
+            "y": 782
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 48.76,
-            "heightDp": 48.76,
-            "widthPercentage": 1185,
-            "heightPercentage": 1185,
+            "widthDp": 58.34,
+            "heightDp": 56.62,
+            "widthPercentage": 1418,
+            "heightPercentage": 1376,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -521,15 +521,15 @@
           },
           "uuid": "a47f95b718b83c9b9d",
           "position": {
-            "x": 9786,
-            "y": 5433
+            "x": 7733,
+            "y": 2429
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 48.76,
-            "heightDp": 48.76,
-            "widthPercentage": 1185,
-            "heightPercentage": 1185,
+            "widthDp": 75.92,
+            "heightDp": 67.35,
+            "widthPercentage": 1845,
+            "heightPercentage": 1637,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -553,15 +553,15 @@
           },
           "uuid": "f933e0eaceef39bac4",
           "position": {
-            "x": 8501,
-            "y": 9652
+            "x": 7529,
+            "y": 9557
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 57.14,
-            "heightDp": 49.52,
-            "widthPercentage": 1389,
-            "heightPercentage": 1204,
+            "widthDp": 81.93,
+            "heightDp": 78.93,
+            "widthPercentage": 1991,
+            "heightPercentage": 1918,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -585,15 +585,15 @@
           },
           "uuid": "c59a848daf5f76126f",
           "position": {
-            "x": 5745,
-            "y": 8679
+            "x": 4551,
+            "y": 8401
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 72.38,
-            "heightDp": 34.29,
-            "widthPercentage": 1759,
-            "heightPercentage": 833,
+            "widthDp": 81.07,
+            "heightDp": 37.75,
+            "widthPercentage": 1971,
+            "heightPercentage": 917,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -617,15 +617,15 @@
           },
           "uuid": "d83ebfacbae76b76a6",
           "position": {
-            "x": 6629,
-            "y": 8679
+            "x": 5562,
+            "y": 8392
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 72.38,
-            "heightDp": 34.29,
-            "widthPercentage": 1759,
-            "heightPercentage": 833,
+            "widthDp": 83.22,
+            "heightDp": 37.32,
+            "widthPercentage": 2023,
+            "heightPercentage": 907,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -649,15 +649,15 @@
           },
           "uuid": "b8f6e0ef2c04e3eee6",
           "position": {
-            "x": 7833,
-            "y": 9632
+            "x": 6628,
+            "y": 8449
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 48.76,
-            "heightDp": 48.76,
-            "widthPercentage": 1185,
-            "heightPercentage": 1185,
+            "widthDp": 57.05,
+            "heightDp": 52.33,
+            "widthPercentage": 1387,
+            "heightPercentage": 1272,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -681,15 +681,15 @@
           },
           "uuid": "1ff21b6ae4c5ecfc78",
           "position": {
-            "x": 3208,
-            "y": 9461
+            "x": 3452,
+            "y": 8419
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 48.76,
-            "heightDp": 48.76,
-            "widthPercentage": 1185,
-            "heightPercentage": 1185,
+            "widthDp": 58.77,
+            "heightDp": 53.19,
+            "widthPercentage": 1428,
+            "heightPercentage": 1293,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -713,15 +713,15 @@
           },
           "uuid": "5553d7319b66d5beaa",
           "position": {
-            "x": 8281,
-            "y": 0
+            "x": 8251,
+            "y": 50
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 72.38,
-            "heightDp": 41.9,
-            "widthPercentage": 1759,
-            "heightPercentage": 1019,
+            "widthDp": 72.06,
+            "heightDp": 41.61,
+            "widthPercentage": 1752,
+            "heightPercentage": 1011,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -745,15 +745,15 @@
           },
           "uuid": "cfb92d342d7fd9b8da",
           "position": {
-            "x": 7398,
-            "y": 0
+            "x": 7182,
+            "y": 206
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 72.38,
-            "heightDp": 41.9,
-            "widthPercentage": 1759,
-            "heightPercentage": 1019,
+            "widthDp": 72.06,
+            "heightDp": 41.61,
+            "widthPercentage": 1752,
+            "heightPercentage": 1011,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -785,15 +785,15 @@
           },
           "uuid": "932df9b4dfe1768f1c",
           "position": {
-            "x": 8281,
-            "y": 1188
+            "x": 8251,
+            "y": 1229
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 72.38,
-            "heightDp": 41.9,
-            "widthPercentage": 1759,
-            "heightPercentage": 1019,
+            "widthDp": 72.06,
+            "heightDp": 41.61,
+            "widthPercentage": 1752,
+            "heightPercentage": 1011,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -817,15 +817,15 @@
           },
           "uuid": "22bac3cda5bd4ed436",
           "position": {
-            "x": 8281,
-            "y": 2376
+            "x": 8251,
+            "y": 2409
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 72.38,
-            "heightDp": 41.9,
-            "widthPercentage": 1759,
-            "heightPercentage": 1019,
+            "widthDp": 72.06,
+            "heightDp": 41.61,
+            "widthPercentage": 1752,
+            "heightPercentage": 1011,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -849,15 +849,15 @@
           },
           "uuid": "57885f88b5d3c9c07d",
           "position": {
-            "x": 8281,
-            "y": 3564
+            "x": 8251,
+            "y": 3588
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 72.38,
-            "heightDp": 41.9,
-            "widthPercentage": 1759,
-            "heightPercentage": 1019,
+            "widthDp": 72.06,
+            "heightDp": 41.61,
+            "widthPercentage": 1752,
+            "heightPercentage": 1011,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -885,15 +885,15 @@
           },
           "uuid": "179b1e5493663ffd39",
           "position": {
-            "x": 8281,
-            "y": 4753
+            "x": 8251,
+            "y": 4767
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 72.38,
-            "heightDp": 41.9,
-            "widthPercentage": 1759,
-            "heightPercentage": 1019,
+            "widthDp": 72.06,
+            "heightDp": 41.61,
+            "widthPercentage": 1752,
+            "heightPercentage": 1011,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -917,15 +917,15 @@
           },
           "uuid": "7f512b3b35b12c6230",
           "position": {
-            "x": 8281,
-            "y": 5941
+            "x": 8251,
+            "y": 5946
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 72.38,
-            "heightDp": 41.9,
-            "widthPercentage": 1759,
-            "heightPercentage": 1019,
+            "widthDp": 72.06,
+            "heightDp": 41.61,
+            "widthPercentage": 1752,
+            "heightPercentage": 1011,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -949,15 +949,15 @@
           },
           "uuid": "57e9e9c001d728552c",
           "position": {
-            "x": 8281,
-            "y": 7129
+            "x": 8251,
+            "y": 7125
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 72.38,
-            "heightDp": 41.9,
-            "widthPercentage": 1759,
-            "heightPercentage": 1019,
+            "widthDp": 72.06,
+            "heightDp": 41.61,
+            "widthPercentage": 1752,
+            "heightPercentage": 1011,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -989,15 +989,15 @@
           },
           "uuid": "d22a562c93438b2e86",
           "position": {
-            "x": 7365,
-            "y": 1188
+            "x": 7182,
+            "y": 1385
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 72.38,
-            "heightDp": 41.9,
-            "widthPercentage": 1759,
-            "heightPercentage": 1019,
+            "widthDp": 72.06,
+            "heightDp": 41.61,
+            "widthPercentage": 1752,
+            "heightPercentage": 1011,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -1021,15 +1021,15 @@
           },
           "uuid": "d00360de6833fe3bd5",
           "position": {
-            "x": 7365,
-            "y": 2376
+            "x": 7182,
+            "y": 2565
           },
           "buttonSize": {
             "type": "dp",
-            "widthDp": 72.38,
-            "heightDp": 41.9,
-            "widthPercentage": 1759,
-            "heightPercentage": 1019,
+            "widthDp": 72.06,
+            "heightDp": 41.61,
+            "widthPercentage": 1752,
+            "heightPercentage": 1011,
             "widthReference": "screen_height",
             "heightReference": "screen_height"
           },
@@ -1058,11 +1058,11 @@
         {
           "uuid": "0b2ad2778846e0740e",
           "position": {
-            "x": 620,
-            "y": 7609
+            "x": 1185,
+            "y": 8598
           },
           "sizeType": "dp",
-          "sizeDp": 190.48,
+          "sizeDp": 166.86,
           "visibilityType": "in_game",
           "canLock": false
         }
