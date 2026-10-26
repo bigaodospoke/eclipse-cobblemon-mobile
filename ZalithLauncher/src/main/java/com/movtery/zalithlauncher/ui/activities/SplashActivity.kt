@@ -220,7 +220,8 @@ class SplashActivity : BaseAppCompatActivity() {
         }.invokeOnCompletion {
             AllSettings.javaRuntime.apply {
                 //检查并设置默认的Java环境
-                if (getValue().isEmpty()) save(Jre.JRE_8.jreName)
+                //Eclipse: o APK só traz o Java 21 (Minecraft 1.21.1)
+                if (getValue().isEmpty()) save(Jre.JRE_21.jreName)
             }
             finishSplash()
         }

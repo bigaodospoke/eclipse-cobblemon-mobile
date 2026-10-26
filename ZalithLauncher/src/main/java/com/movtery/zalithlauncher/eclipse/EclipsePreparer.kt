@@ -43,6 +43,7 @@ import com.movtery.zalithlauncher.ui.androidText
 import com.movtery.zalithlauncher.utils.file.compareSHA1
 import com.movtery.zalithlauncher.utils.file.formatFileSize
 import com.movtery.zalithlauncher.utils.logging.Logger
+import com.movtery.zalithlauncher.utils.network.ServerAddress
 import com.movtery.zalithlauncher.utils.network.isUsingMobileData
 import com.movtery.zalithlauncher.utils.platform.bytesToMB
 import com.movtery.zalithlauncher.utils.platform.getMaxMemoryForSettings
@@ -76,7 +77,9 @@ private data class SyncState(
     val minecraft: String? = null,
     val loader: String? = null,
     val modpackVersion: String? = null,
-    val files: Map<String, String> = emptyMap()
+    val files: Map<String, String> = emptyMap(),
+    /** Perfil de vídeo do celular já aplicado ao options.txt (só uma vez, depois vale o que o jogador escolher) */
+    val mobileOptionsApplied: Boolean = false
 )
 
 /** O jogador recusou baixar usando dados móveis */
@@ -143,7 +146,7 @@ class EclipsePreparer(
         ) { task ->
             task.updateProgress(-1f)
             panel = EclipseRemote.fetchPanel()
-            manifest = EclipseRemote.fetchManifest()
+            manifest = withMobileExtras(EclipseRemote.fetchManifest())
             Logger.info(TAG, "Modpack ${manifest.name} ${manifest.version}: MC ${manifest.minecraft}, Fabric ${manifest.loader.version}, ${manifest.files.size} files")
 
             val dir = versionDir
@@ -249,11 +252,14 @@ class EclipsePreparer(
                     if (file.isFile && file.delete()) Logger.info(TAG, "Removed file no longer in the modpack: $path")
                 }
 
+            if (!state.mobileOptionsApplied) applyMobileOptions(dir)
+
             writeState(
                 dir,
                 state.copy(
                     modpackVersion = manifest.version,
-                    files = managed.associate { it.path to it.sha1 }
+                    files = managed.associate { it.path to it.sha1 },
+                    mobileOptionsApplied = true
                 )
             )
 
@@ -287,25 +293,66 @@ class EclipsePreparer(
     }
 
     /**
+     * Junta ao modpack os mods que só o celular usa ([EclipseConfig.MOBILE_EXTRA_MODS]).
+     * Pula o extra se o modpack já tiver um jar com o mesmo id no nome, para não carregar o mod duas vezes.
+     */
+    private fun withMobileExtras(base: EclipseManifest): EclipseManifest {
+        val fileNames = base.files.map { it.path.substringAfterLast('/').lowercase() }
+        val extras = EclipseConfig.MOBILE_EXTRA_MODS
+            .filter { extra -> fileNames.none { it.contains(extra.modId) } }
+            .map { it.file }
+            .filter { extra -> base.files.none { it.path == extra.path } }
+        return if (extras.isEmpty()) base else base.copy(files = base.files + extras)
+    }
+
+    /**
+     * Troca no options.txt as opções de [EclipseConfig.MOBILE_OPTIONS] (cria as que faltarem)
+     */
+    private fun applyMobileOptions(dir: File) {
+        val file = File(dir, "options.txt")
+        val lines = if (file.isFile) file.readLines().toMutableList() else mutableListOf()
+        EclipseConfig.MOBILE_OPTIONS.forEach { (key, value) ->
+            val line = "$key:$value"
+            val index = lines.indexOfFirst { it.substringBefore(':') == key }
+            if (index >= 0) lines[index] = line else lines.add(line)
+        }
+        file.writeText(lines.joinToString("\n", postfix = "\n"))
+        Logger.info(TAG, "Applied the mobile video profile to options.txt")
+    }
+
+    /**
      * Coloca o servidor na lista de Multijogador (servers.dat) com o pacote de recursos ativado:
      * o jogador consegue reconectar pela lista e o jogo aceita o pacote do servidor sem perguntar.
      * Se o servidor já estiver na lista, respeita o que o jogador escolheu.
      */
     private suspend fun ensureServerInList(dir: File) {
         val address = panel.server.address
+        //O jogo procura na lista exatamente o texto do --quickPlayMultiplayer, que o launcher manda como "host:porta"
+        val quickPlayIp = runCatching {
+            val parsed = ServerAddress.parse(address)
+            "${parsed.getASCIIHost()}:${parsed.port.takeIf { it >= 0 } ?: ServerAddress.DEFAULT_PORT}"
+        }.getOrDefault(address)
+
         val servers = AllServers()
         servers.loadServers(File(dir, "servers.dat"))
-        if (servers.serverList.any { it.originIp.equals(address, ignoreCase = true) }) return
+        if (servers.serverList.any { it.originIp.equals(quickPlayIp, ignoreCase = true) }) return
 
-        servers.addServer(
-            ServerData(
-                name = panel.server.name,
-                originIp = address,
-                texturePackStatus = ServerData.TexturePackStatus.ENABLED
+        //Versões anteriores do launcher gravaram o endereço sem a porta: corrige essa entrada
+        val oldEntry = servers.serverList.firstOrNull { it.originIp.equals(address, ignoreCase = true) }
+        if (oldEntry != null) {
+            oldEntry.originIp = quickPlayIp
+            oldEntry.texturePackStatus = ServerData.TexturePackStatus.ENABLED
+        } else {
+            servers.addServer(
+                ServerData(
+                    name = panel.server.name,
+                    originIp = quickPlayIp,
+                    texturePackStatus = ServerData.TexturePackStatus.ENABLED
+                )
             )
-        )
+        }
         servers.save(dir)
-        Logger.info(TAG, "Added $address to the multiplayer server list")
+        Logger.info(TAG, "Server $quickPlayIp is in the multiplayer list with the resource pack enabled")
     }
 
     /**

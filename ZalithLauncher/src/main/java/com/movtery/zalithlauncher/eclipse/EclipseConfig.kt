@@ -19,6 +19,15 @@
 package com.movtery.zalithlauncher.eclipse
 
 /**
+ * Mod instalado só no celular
+ * @param modId id do mod no Fabric, usado para não duplicar se o modpack já trouxer o mesmo mod
+ */
+data class MobileExtraMod(
+    val modId: String,
+    val file: EclipseManifest.ManifestFile
+)
+
+/**
  * Tudo o que é específico do servidor Eclipse Cobblemon fica aqui.
  * As URLs são as mesmas do launcher de PC (painel Voxelith), então PC e celular
  * sempre usam o mesmo modpack, IP e links.
@@ -61,6 +70,39 @@ object EclipseConfig {
      * - axiom: traz a biblioteca nativa do ImGui só para PC (x86-64) e fecha o jogo ao iniciar
      */
     val MOBILE_DISABLED_MODS = listOf("axiom")
+
+    /**
+     * Mods que só o celular instala, além do modpack (só do lado do jogador, não afetam o servidor).
+     * Se o modpack passar a trazer o mesmo mod, o extra é ignorado para não duplicar.
+     * - ModernFix: menos memória e carregamento mais rápido em packs grandes
+     */
+    val MOBILE_EXTRA_MODS = listOf(
+        MobileExtraMod(
+            modId = "modernfix",
+            file = EclipseManifest.ManifestFile(
+                path = "mods/modernfix-fabric-5.25.1+mc1.21.1.jar",
+                url = "https://cdn.modrinth.com/data/nmDcB62a/versions/NnNX8LBn/modernfix-fabric-5.25.1%2Bmc1.21.1.jar",
+                sha1 = "4ab39e9c736e7204146792c545ec5b29fc0a3872",
+                size = 471258
+            )
+        )
+    )
+
+    /**
+     * Configurações de vídeo mais leves, aplicadas ao options.txt uma única vez por instalação
+     * (o options.txt do pack foi feito para PC). Depois disso o jogador muda à vontade.
+     */
+    val MOBILE_OPTIONS = linkedMapOf(
+        "renderDistance" to "6",
+        "simulationDistance" to "5",
+        "graphicsMode" to "0",
+        "maxFps" to "60",
+        "entityShadows" to "false",
+        "biomeBlendRadius" to "0",
+        "mipmapLevels" to "2",
+        "entityDistanceScaling" to "0.75",
+        "particles" to "1"
+    )
 
     /** Regra de nick do modo offline, igual ao launcher de PC */
     val NICK_REGEX = Regex("^[A-Za-z0-9_]{3,16}$")

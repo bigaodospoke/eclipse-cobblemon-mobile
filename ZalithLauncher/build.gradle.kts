@@ -31,6 +31,9 @@ val defaultCurseForgeApiKey = project.findProperty("curseforge_api_key") as? Str
 
 val projectArch: String = System.getProperty("arch", "all")
 
+//Eclipse: deixa no APK só o Java/LWJGL que o Minecraft do servidor usa (ver JREAssetsCleanup)
+val eclipseSlimRuntimes: Boolean = (project.findProperty("eclipse_slim_runtimes") as? String)?.toBoolean() ?: true
+
 fun getKeyFromLocal(envKey: String, fileName: String? = null, default: String? = null): String {
     val key = System.getenv(envKey)
     return key ?: fileName?.let {
@@ -162,6 +165,16 @@ androidComponents {
                                 if (projectArch != "all" && it.name != "version" && !it.name.contains("universal") && it.name != "bin-$projectArch.tar.xz") {
                                     logger.lifecycle("[$tag] delete: $it : ${it.delete()}")
                                 }
+                            }
+                        }
+
+                        //Eclipse: o servidor usa Minecraft 1.21.1, que só precisa do Java 21 e da LWJGL 3.3.3.
+                        //Os outros Javas e a LWJGL 3.4.1 (Minecraft 26.x) ocupavam quase metade do APK.
+                        //Sem os arquivos, o app pula esses itens na primeira abertura.
+                        if (eclipseSlimRuntimes) {
+                            listOf("runtimes/jre-8", "runtimes/jre-17", "runtimes/jre-25", "app_runtime/lwjgl/3.4.1").forEach { path ->
+                                val dir = File(assetsDir, path)
+                                if (dir.exists()) logger.lifecycle("[$tag] Eclipse slim: remove $path : ${dir.deleteRecursively()}")
                             }
                         }
 

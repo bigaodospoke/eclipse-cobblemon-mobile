@@ -65,7 +65,8 @@ object AllSettings : SettingsRegistry() {
     /**
      * 分辨率
      */
-    val resolutionRatio = intSetting("resolutionRatio", 100, 25..300)
+    //Eclipse: 80% da resolução da tela dá bem mais FPS no celular com pouca perda visual
+    val resolutionRatio = intSetting("resolutionRatio", 80, 25..300)
 
     /**
      * 分辨率规则
