@@ -475,6 +475,11 @@ object AllSettings : SettingsRegistry() {
      */
     val controlLayout = stringSetting("controlLayout", "")
 
+    /**
+     * Eclipse: versão do layout oficial do servidor já instalada e selecionada (0 = nenhuma)
+     */
+    val eclipseControlLayoutVersion = intSetting("eclipseControlLayoutVersion", 0)
+
     //Other
     /**
      * 当前选择的账号

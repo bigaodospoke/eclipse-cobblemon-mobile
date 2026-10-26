@@ -46,6 +46,10 @@ import java.io.InputStream
 
 private const val TAG = "ControlManager"
 
+/** Eclipse: layout de controles oficial do servidor */
+private const val ECLIPSE_LAYOUT_ASSET = "eclipse_layout.json"
+private const val ECLIPSE_LAYOUT_FILE = "eclipse-cobblemon.json"
+
 /**
  * 控制布局管理者
  */
@@ -76,6 +80,7 @@ object ControlManager {
      */
     fun checkDefaultAndRefresh(context: Context) {
         scope.launch(Dispatchers.IO) {
+            installEclipseLayout(context)
             val files = (PathManager.DIR_CONTROL_LAYOUTS.listFiles() ?: emptyArray())
                 .filter { file ->
                     file.isFile && file.exists() && file.extension.equals("json", true)
@@ -145,6 +150,27 @@ object ControlManager {
         }
 
         _selectedLayout.update { layout }
+    }
+
+    /**
+     * Eclipse: instala o layout oficial do servidor (assets/eclipse_layout.json, gerado por
+     * ferramentas/converter-controles-pojav.mjs) com nome fixo e o seleciona uma vez por versão do layout.
+     * Depois disso vale o layout que o jogador escolher, até sair uma versão nova.
+     */
+    private fun installEclipseLayout(context: Context) {
+        runCatching {
+            val bundled = context.assets.open(ECLIPSE_LAYOUT_ASSET).use { it.readString() }
+            val version = loadLayoutFromString(bundled).info.versionCode
+            if (version <= AllSettings.eclipseControlLayoutVersion.getValue()) return
+
+            val target = File(PathManager.DIR_CONTROL_LAYOUTS, ECLIPSE_LAYOUT_FILE)
+            context.copyAssetFile(fileName = ECLIPSE_LAYOUT_ASSET, output = target, overwrite = true)
+            AllSettings.controlLayout.save(target.name)
+            AllSettings.eclipseControlLayoutVersion.save(version)
+            Logger.info(TAG, "Installed the Eclipse control layout, version $version")
+        }.onFailure { e ->
+            Logger.warning(TAG, "Failed to install the Eclipse control layout", e)
+        }
     }
 
     /**
