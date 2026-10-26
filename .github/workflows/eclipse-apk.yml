@@ -77,22 +77,55 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
       - name: Download APKs
         uses: actions/download-artifact@v8
         with:
           path: apks
           merge-multiple: true
 
+      # Nomes fixos: os links .../releases/latest/download/<nome> do Discord e do site
+      # sempre baixam a versão mais nova, sem precisar editar nada
+      - name: Rename APKs
+        run: |
+          mkdir -p publicar
+          cp apks/*arm64-v8a*.apk publicar/EclipseCobblemon-Celular.apk
+          cp apks/*x86_64*.apk publicar/EclipseCobblemon-Emulador-PC.apk
+          ls -la publicar
+
+      # Sem --prerelease: o link "latest" do GitHub ignora versões marcadas como pré-lançamento
       - name: Publish release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" apks/*.apk \
+          gh release create "$GITHUB_REF_NAME" publicar/*.apk \
             --repo "$GITHUB_REPOSITORY" \
+            --latest \
             --title "Eclipse Cobblemon $GITHUB_REF_NAME" \
             --notes "Launcher Android do servidor Eclipse Cobblemon.
 
-          - Celular: baixe o arquivo que termina em arm64-v8a.apk (Android 8 ou superior, 64 bits)
-          - Emulador no PC (BlueStacks, LDPlayer...): baixe o que termina em x86_64.apk
+          - Celular: EclipseCobblemon-Celular.apk (Android 8 ou superior, 64 bits)
+          - Emulador no PC (BlueStacks, LDPlayer...): EclipseCobblemon-Emulador-PC.apk
 
           Versão modificada não oficial do Zalith Launcher 2, distribuída sob a GPL-3.0. O código-fonte desta versão está neste repositório."
+
+      # Atualiza a mensagem do bot no tópico "Como entrar no Servidor" (versão e data)
+      - name: Update Discord message
+        if: ${{ vars.DISCORD_THREAD_ID != '' && vars.DISCORD_MESSAGE_ID != '' }}
+        continue-on-error: true
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          THREAD_ID: ${{ vars.DISCORD_THREAD_ID }}
+          MESSAGE_ID: ${{ vars.DISCORD_MESSAGE_ID }}
+        run: |
+          DATA=$(TZ=America/Sao_Paulo date +%d/%m/%Y)
+          CONTEUDO=$(sed -e "s/{versao}/$GITHUB_REF_NAME/" -e "s|{data}|$DATA|" .github/discord-mensagem.md)
+          jq -n --arg c "$CONTEUDO" '{content: $c, flags: 4, allowed_mentions: {parse: []}}' > corpo.json
+          curl -fsS -X PATCH \
+            -H "Authorization: Bot $DISCORD_BOT_TOKEN" \
+            -H "Content-Type: application/json" \
+            --data @corpo.json \
+            "https://discord.com/api/v10/channels/$THREAD_ID/messages/$MESSAGE_ID" > /dev/null
+          echo "Mensagem do Discord atualizada para $GITHUB_REF_NAME"

@@ -88,6 +88,15 @@ wait_system() {
 sleep 30
 wait_system
 
+# Português: troca o idioma aqui (com espera), não na linha de comando do emulador,
+# que reiniciava o Android enquanto o runner ainda mexia nele
+adb root >/dev/null 2>&1 || true
+sleep 3
+adb wait-for-device
+adb shell "setprop persist.sys.locale pt-BR; setprop ctl.restart zygote" || true
+sleep 25
+wait_system
+
 log "instalando $APK"
 for attempt in 1 2 3 4 5 6; do
   if adb install -r -g "$APK"; then break; fi

@@ -48,7 +48,7 @@ jobs:
           ram-size: 6144M
           disk-size: 12G
           disable-animations: true
-          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none -change-locale pt-BR
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
           script: bash .github/scripts/eclipse-screenshots.sh
 
       - name: Upload screenshots
